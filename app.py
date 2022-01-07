@@ -27,13 +27,13 @@ if __name__ == '__main__':
    app.run('0.0.0.0', port=5000, debug=True)
 
 # GEt, Post 요청 확인 ajax 코드입니다.
-# $.ajax({
-#     type: "GET",
-#     url: "/test?title_give=봄날은간다",
-#     data: {},
-#     success: function(response){
-#        console.log(response)
-#     }
+#      }$.ajax({
+# #     type: "GET",
+# #     url: "/test?title_give=봄날은간다",
+# #     data: {},
+# #     success: function(response){
+# #        console.log(response)
+# #
 #   })
 # $.ajax({
 #     type: "POST",
