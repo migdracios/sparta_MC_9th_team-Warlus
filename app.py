@@ -7,8 +7,8 @@ app = Flask(__name__)
 client = MongoClient('localhost', 27017)
 db = client.sparta_3team
 
-doc = {'name':'bobby'}
-db.users.delete_one(doc)
+doc = {'name':'sea_elephant'}
+db.users.insert_one(doc)
 
 
 ## URL 별로 함수명이 같거나,
