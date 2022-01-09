@@ -32,7 +32,6 @@ def review_POST():
           }
    db.cafereview.insert_one(doc) # db에 name, review, star 저장
 
-
    return jsonify({'msg': '리뷰가 성공적으로 작성되었습니다.'})
 
 @app.route('/review', methods=['GET'])
@@ -41,8 +40,6 @@ def review_get():
     reviews = list(db.cafereview.find({},{'_id': False}))
 
     return jsonify({'all_reviews': reviews})
-
-
 
 
 if __name__ == '__main__':
