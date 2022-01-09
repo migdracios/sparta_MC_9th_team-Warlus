@@ -1,38 +1,129 @@
 <!DOCTYPE html>
 
-
 <html lang="en">
 
-
 <head>
-
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>맛집코끼리</title>
 
+    <style>
+        .mybtn {
+            width: 200px;
+            height: 100px;
+
+        }
+    </style>
+
 </head>
 
 <body>
 
-    <h1>서버 테스트중입니다.</h1>
+
+<h1>서버 테스트중입니다.</h1>
 <!-- 지도를 표시할 div 입니다 -->
 <div id="map" style="width:500px;height:500px;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=880565b3d094debea715c9c1ebbd1bbe"></script>
 <script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-    mapOption = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };
 
-// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };
+
+    // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+
+    function make_review() {
+        let name = $('#name').val();
+        let review = $('#review').val();
+        let star = $('#star').val();
+
+        $.ajax({
+                type: "POST",
+                url: "/review",
+                data: {name_give: name, review_give: review, star_give: star},
+                success: function (response) {
+                    alert(response["msg"]);
+                    window.location.reload();
+                }
+            }
+        )
+    }
+
+
+    function call_review() {
+        $.ajax({
+            type: "GET",
+            url: "/review",
+            data: {},
+            success: function (response)
+            {
+                let reviews = response['all_reviews']
+
+                for (let i = 0; i < reviews.length; i++)
+                {
+                    let name = reviews[i]['name']
+                    let review = reviews[i]['review']
+                    let star = reviews[i]['star']
+
+                    let temp_html = `<tr>
+                                        <td>${name}</td>
+                                        <td>${review}</td>
+                                        <td>${star}</td>
+                                     </tr>`
+
+                    $('#reviews-box').append(temp_html)
+
+                }
+            }
+
+        })
+    }
+
 </script>
 
+<div><input type="text" id="name">맛집 이름</div>
+<div><input type="text" id="review">리뷰</div>
+<div><input type="text" id="star">별점</div>
+
+<button type="button" onclick="make_review()" class="btn btn-primary mybtn"> 리뷰 작성하기</button>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">맛집 이름</th>
+        <th scope="col">리뷰</th>
+        <th scope="col">별점</th>
+    </tr>
+    </thead>
+    <tbody id="reviews-box">
+    <tr>
+        <td>맛집 제목</td>
+        <td>맛집이네요</td>
+        <td>4.5</td>
+    </tr>
+    <tr>
+        <td>맛집 제목</td>
+        <td>맛집이네요</td>
+        <td>4.5</td>
+    </tr>
+    <tr>
+        <td>맛집 제목</td>
+        <td>맛집이네요</td>
+        <td>4.5</td>
+    </tr>
+    </tbody>
+</table>
+
 </body>
+
 
 </html>
 
