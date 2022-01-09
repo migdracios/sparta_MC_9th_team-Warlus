@@ -1,5 +1,15 @@
-from flask import Flask, render_template, request, jsonify
+from pymongo import MongoClient
+
+from flask import Flask, render_template, jsonify, request
+
 app = Flask(__name__)
+
+client = MongoClient('localhost', 27017)
+db = client.sparta_3team
+
+doc = {'name':'sea_elephant'}
+db.users.insert_one(doc)
+
 
 ## URL 별로 함수명이 같거나,
 ## route('/') 등의 주소가 같으면 안됩니다.
