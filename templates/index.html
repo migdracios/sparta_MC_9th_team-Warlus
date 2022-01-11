@@ -7,19 +7,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 
 
     <title>맛집코끼리</title>
@@ -33,58 +33,81 @@
         }
     </style>
     <script>
-        $(document).ready(function () {
-                call_review();
-            });
+        {#  공공API 테스트 #}
+        {#   $(document).ready(function () {
+            listing();
+        });
 
-
-         function make_review() {
-        let name = $('#name').val();
-        let review = $('#review').val();
-        let star = $('#star').val();
-
-        $.ajax({
-                type: "POST",
-                url: "/review",
-                data: {name_give: name, review_give: review, star_give: star},
-                success: function (response) {
-                    alert(response["msg"]);
-                    window.location.reload();
-                }
+        function listing() {
+            API_URL = ("https://openapi.gg.go.kr/PlaceThatDoATasteyFoodSt?KEY=86a1365c9daa4cf3b12afb3126c439c7")
+                console.log(API_URL)
             }
-        )
-    }
+            $.ajax({
+                type: "POST",
+                url: "/https://openapi.gg.go.kr/PlaceThatDoATasteyFoodSt?KEY=86a1365c9daa4cf3b12afb3126c439c7",
+                data: {'sample_give':API_URL},
+                success: function (response) {
+                    console.log(response)
+                }
+            })
 
 
-    function call_review() {
-        $.ajax({
-            type: "GET",
-            url: "/review",
-            data: {},
-            success: function (response)
-            {
-                let reviews = response['all_reviews']
+        });
+        #}
 
-                for (let i = 0; i < reviews.length; i++)
-                {
-                    let name = reviews[i]['name']
-                    let review = reviews[i]['review']
-                    let star = reviews[i]['star']
+         url = "https://openapi.gg.go.kr/PlaceThatDoATasteyFoodSt?KEY=86a1365c9daa4cf3b12afb3126c439c7"
 
-                    let temp_html = `<tr>
+        {#  리뷰 저장하기 #}
+
+        function make_review() {
+            let name = $('#name').val();
+            let review = $('#review').val();
+            let star = $('#star').val();
+
+            $.ajax({
+                    type: "POST",
+                    url: "/review",
+                    data: {name_give: name, review_give: review, star_give: star},
+                    success: function (response) {
+                        alert(response["msg"]);
+                        window.location.reload();
+                    }
+                }
+            )
+        }
+
+        {# 리뷰 보여주기 #}
+        $(document).ready(function () {
+            call_review();
+        })
+
+
+        function call_review() {
+            $.ajax({
+                type: "GET",
+                url: "/review",
+                data: {},
+                success: function (response) {
+                    let reviews = response['all_reviews']
+
+                    for (let i = 0; i < reviews.length; i++) {
+                        let name = reviews[i]['name']
+                        let review = reviews[i]['review']
+                        let star = reviews[i]['star']
+
+                        let temp_html = `<tr>
                                         <td>${name}</td>
                                         <td>${review}</td>
                                         <td>${star}</td>
                                      </tr>`
 
-                    $('#reviews-box').append(temp_html)
+                        $('#reviews-box').append(temp_html)
 
+                    }
                 }
-            }
 
-        })
-    }
-
+            })
+        }
 
 
     </script>
@@ -132,22 +155,24 @@
 </table>
 
 <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-  <div class="card-header">Header</div>
-  <div class="card-body">
-    <h5 class="card-title">Primary card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
+    <div class="card-header">Header</div>
+    <div class="card-body">
+        <h5 class="card-title">Primary card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+    </div>
 </div>
 
 <div class="card-group">
-  <div class="card">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    <div class="card">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
     </div>
-  </div>
 
 </body>
 

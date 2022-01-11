@@ -1,6 +1,8 @@
+from bs4 import BeautifulSoup
 from pymongo import MongoClient
 
 from flask import Flask, render_template, jsonify, request
+import requests
 
 app = Flask(__name__)
 
@@ -33,6 +35,19 @@ def review_POST():
    db.cafereview.insert_one(doc) # db에 name, review, star 저장
 
    return jsonify({'msg': '리뷰가 성공적으로 작성되었습니다.'})
+
+
+def get_datas():
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
+    data = requests.get('https://openapi.gg.go.kr/PlaceThatDoATasteyFoodSt?KEY=86a1365c9daa4cf3b12afb3126c439c7', headers=headers)
+
+    soup = BeautifulSoup(data.text, 'html.parser')
+
+    trs = soup.select('#folder3 > div.opened > div:nth-child(2)')
+    print(soup)
+
+
 
 @app.route('/review', methods=['GET'])
 def review_get():
