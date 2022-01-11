@@ -247,7 +247,7 @@
                                         <td>${star}</td>
                                      </tr>`
 
-                    $('#reviews-box').append(temp_html)
+                    $('#card-box').append(temp_html)
 
                 }
             }
@@ -270,12 +270,12 @@
 <div class="wrapper">
     <div class="cards">
 
-        <div class=" card [ is-collapsed ] ">
+        <div class=" card [ is-collapsed ] " >
             <div class="card__inner [ js-expander ]">
                 <span>리뷰1</span>
                 <i class="fa fa-folder-o"></i>
             </div>
-            <div class="card__expander">
+            <div class="card__expander" id="card-box">
                 <i class="fa fa-close [ js-collapser ]"></i>
                 리뷰내용
             </div>
