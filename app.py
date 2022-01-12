@@ -72,7 +72,6 @@ def get_datas():
 
    for names in rows:
       name = names.select_one('restrt_nm').text
-
       juso = names.select_one('REFINE_ROADNM_ADDR').text
       callnumber = names.select_one('TASTFDPLC_TELNO').text
       gyundo = names.select_one('REFINE_WGS84_LOGT').text
@@ -86,7 +85,6 @@ def get_datas():
       # print(dic)
       db.matjipjido.insert_one(dic)
    return rows
-
 # app.py를 run할때 Api를 새로 불러옵니다
 def insert_all():
     db.matjipjido.drop()  # matjipjido 콜렉션을 모두 지워줍니다.
