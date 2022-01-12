@@ -18,7 +18,7 @@ db = client.sparta_3team
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index_ys.html')
 
 
 @app.route('/review', methods=['POST'])  # DB작성(이름, 리뷰, 별점)
