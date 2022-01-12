@@ -203,6 +203,7 @@
     </style>
     <!-- 밑의 내용은 app.py의 데이터 연결내용입니다 -->
     <script>
+        <!-- 리뷰 저장하기 -->
         $(document).ready(function () {
                 call_review();
             });
@@ -225,7 +226,7 @@
         )
     }
 
-
+    <!-- 리뷰 불러오기 -->
     function call_review() {
         $.ajax({
             type: "GET",
@@ -255,6 +256,37 @@
         })
     }
 
+    <!-- DB 불러오기 -->
+
+    $(document).ready(function () {
+                showlist();
+            });
+
+            function showlist() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/list',
+                    data: {},
+                    success: function (response) {
+                        let matjip_list = response['all_list'];
+
+                        for (let i =0; i<matjip_list.length;i++){
+                            let name = matjip_list[i]['name']
+                            let juso = matjip_list[i]['juso']
+                            let callnumber = matjip_list[i]['callnumber']
+                            let gyundo = matjip_list[i]['gyundo']
+                            let wedo = matjip_list[i]['wedo']
+
+                            console.log(name,juso,callnumber,gyundo,wedo)
+
+                            let temp_html = `${name},${juso},${callnumber},${gyundo},${wedo}`
+
+                            $('#DBLIst')
+
+                        }
+                    }
+                });
+            }
 
     </script>
 
@@ -262,6 +294,7 @@
 </head>
 
 <body>
+
 
 
 <h1>서버 테스트중입니다.</h1>
@@ -286,7 +319,7 @@
                 <span>리뷰2</span>
                 <i class="fa fa-folder-o"></i>
             </div>
-            <div class="card__expander">
+            <div class="card__expander" >
                 <i class="fa fa-close [ js-collapser ]"></i>
                 리뷰내용
             </div>
@@ -375,7 +408,7 @@
 <!-- 지도 표시할 script입니다 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=880565b3d094debea715c9c1ebbd1bbe"></script>
 <script>
-
+    var DBLIst = document.
 
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {

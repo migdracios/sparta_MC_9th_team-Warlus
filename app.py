@@ -16,12 +16,14 @@ db = client.sparta_3team
 ## URL 별로 함수명이 같거나,
 ## route('/') 등의 주소가 같으면 안됩니다.
 
+# index.html 불러오기
 @app.route('/')
 def home():
     return render_template('index.html')
 
 
-@app.route('/review', methods=['POST'])  # DB작성(이름, 리뷰, 별점)
+# DB작성(이름, 리뷰, 별점)
+@app.route('/review', methods=['POST'])
 def review_POST():
 
    name_recieve = request.form['name_give'] # name_recieve 로 클라이언트가 준 name 가져오기
@@ -48,7 +50,7 @@ def get_datas():
     print(soup)
 
 
-#리뷰 보여주기
+# 리뷰 보여주기
 @app.route('/review', methods=['GET'])
 def review_get():
 
@@ -56,7 +58,7 @@ def review_get():
 
     return jsonify({'all_reviews': reviews})
 
-#맛집 API 저장
+# 맛집 API 저장
 def get_datas():
    headers = {
       'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
@@ -71,8 +73,6 @@ def get_datas():
    for names in rows:
       name = names.select_one('restrt_nm').text
 
-      # print(dic)
-      # db.matjip.insert_one(dic)
       juso = names.select_one('REFINE_ROADNM_ADDR').text
       callnumber = names.select_one('TASTFDPLC_TELNO').text
       gyundo = names.select_one('REFINE_WGS84_LOGT').text
@@ -83,16 +83,28 @@ def get_datas():
              'gyundo':gyundo,
              'wedo':wedo
              }
-      print(dic)
+      # print(dic)
       db.matjipjido.insert_one(dic)
    return rows
 
+# app.py를 run할때 Api를 새로 불러옵니다
 def insert_all():
-    db.matjipjido.drop()  # mystar 콜렉션을 모두 지워줍니다.
-    sil = get_datas()
+    db.matjipjido.drop()  # matjipjido 콜렉션을 모두 지워줍니다.
+    get_datas()
 
 
 insert_all()
+
+# 맛집API 불러오기
+@app.route('/list', methods=['GET'])
+def show_reviews():
+
+    matjip_list = list(db.matjipjido.find({},{'_id': False}))
+
+    return jsonify({'all_list': matjip_list})
+
+
+
 
 
 if __name__ == '__main__':
