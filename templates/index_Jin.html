@@ -361,112 +361,6 @@
 <div id="map" class="kmap" style="width:1350px;height:500px;"></div>
 <hr>
 
-<!-- codePen 카드 div
-<div class="wrapper">
-    <div class="cards">
-
-        <div class=" card [ is-collapsed ] ">
-            <div class="card__inner [ js-expander ]">
-                <span>리뷰1</span>
-                <i class="fa fa-folder-o"></i>
-            </div>
-            <div class="card__expander">
-                <i class="fa fa-close [ js-collapser ]"></i>
-                리뷰내용
-            </div>
-        </div>
-
-        <div class=" card [ is-collapsed ] ">
-            <div class="card__inner [ js-expander ]">
-                <span>리뷰2</span>
-                <i class="fa fa-folder-o"></i>
-            </div>
-            <div class="card__expander">
-                <i class="fa fa-close [ js-collapser ]"></i>
-                리뷰내용
-            </div>
-        </div>
-
-        <div class=" card [ is-collapsed ] ">
-            <div class="card__inner [ js-expander ]">
-                <span>리뷰3</span>
-                <i class="fa fa-folder-o"></i>
-            </div>
-            <div class="card__expander">
-                <i class="fa fa-close [ js-collapser ]"></i>
-                리뷰내용
-            </div>
-        </div>
-
-        <div class=" card [ is-collapsed ] ">
-            <div class="card__inner [ js-expander ]">
-                <span>리뷰4</span>
-                <i class="fa fa-folder-o"></i>
-            </div>
-            <div class="card__expander">
-                <i class="fa fa-close [ js-collapser ]"></i>
-                리뷰내용
-            </div>
-        </div>
-
-        <div class=" card [ is-collapsed ] ">
-            <div class="card__inner [ js-expander ]">
-                <span>리뷰5</span>
-                <i class="fa fa-folder-o"></i>
-            </div>
-            <div class="card__expander">
-                <i class="fa fa-close [ js-collapser ]"></i>
-                리뷰내용
-            </div>
-        </div>
-
-        <div class=" card [ is-collapsed ] ">
-            <div class="card__inner [ js-expander ]">
-                <span>리뷰6</span>
-                <i class="fa fa-folder-o"></i>
-            </div>
-            <div class="card__expander">
-                <i class="fa fa-close [ js-collapser ]"></i>
-                리뷰내용
-            </div>
-        </div>
-
-        <div class=" card [ is-collapsed ] ">
-            <div class="card__inner [ js-expander ]">
-                <span>리뷰7</span>
-                <i class="fa fa-folder-o"></i>
-            </div>
-            <div class="card__expander">
-                <i class="fa fa-close [ js-collapser ]"></i>
-                리뷰내용
-            </div>
-        </div>
-
-        <div class=" card [ is-collapsed ] ">
-            <div class="card__inner [ js-expander ]">
-                <span>리뷰8</span>
-                <i class="fa fa-folder-o"></i>
-            </div>
-            <div class="card__expander">
-                <i class="fa fa-close [ js-collapser ]"></i>
-                리뷰내용
-            </div>
-        </div>
-
-        <div class=" card [ is-collapsed ] ">
-            <div class="card__inner [ js-expander ]">
-                <span>리뷰9</span>
-                <i class="fa fa-folder-o"></i>
-            </div>
-            <div class="card__expander">
-                <i class="fa fa-close [ js-collapser ]"></i>
-                리뷰내용
-            </div>
-        </div>
-
-    </div>
-
-</div> -->
 
 <!-- 지도 표시할 script입니다 -->
 <script type="text/javascript"
@@ -490,21 +384,25 @@
         minLevel: 10 // 클러스터 할 최소 지도 레벨
     });
 
-    var 데이터 = [
+
+    var 맛집데이터 = [
         [37.55321, 126.972613, '<div style="padding: 5px">맛집1</div>'],
         [37.558907, 126.978305, '<div style="padding: 5px">맛집2</div>'],
         [37.55893317244327, 126.94417826730081, '<div style="padding: 5px">맛집3</div>']
     ];
+
     var markers = [];
-    for (var i = 0; i < 데이터.length; i++) {
+
+
+    for (var i = 0; i < 맛집데이터.length; i++) {
         // 지도에 마커를 생성하고 표시한다
         var marker = new kakao.maps.Marker({
-            position: new kakao.maps.LatLng(데이터[i][0], 데이터[i][1]), // 마커의 좌표
+            position: new kakao.maps.LatLng(맛집데이터[i][0], 맛집데이터[i][1]), // 마커의 좌표
             map: map // 마커를 표시할 지도 객체
         });
         // 인포윈도우를 생성합니다
         var infowindow = new kakao.maps.InfoWindow({
-            content: 데이터[i][2]
+            content: 맛집데이터[i][2]
         });
 
         markers.push(marker);
