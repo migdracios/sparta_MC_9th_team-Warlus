@@ -319,27 +319,41 @@
     </style>
     <!-- 밑의 내용은 app.py의 데이터 연결내용입니다 -->
     <script>
-        $(document).ready(function () {
-                call_review();
-            });
-
-
          function make_review() {
-        let name = $('#name').val();
-        let review = $('#review').val();
-        let star = $('#star').val();
+             let name = $('#name').val();
+             let review = $('#review').val();
+             let star = $('#star').val();
 
-        $.ajax({
-                type: "POST",
-                url: "/review",
-                data: {name_give: name, review_give: review, star_give: star},
-                success: function (response) {
-                    alert(response["msg"]);
-                    window.location.reload();
-                }
-            }
-        )
-    }
+             $.ajax({
+                     type: "POST",
+                     url: "/review",
+                     data: {name_give: name, review_give: review, star_give: star},
+                     success: function (response) {
+                         alert(response["msg"]);
+                         window.location.reload();
+                     }
+                 }
+             )
+         }
+
+         //맛집 api를 지도의 좌표에 삽입할 목표!
+         function get_data() {
+             let gyundo = $('#gyundo').val()
+             let wedo = $('#wedo').val()
+
+             $.ajax({
+                 type: "GET",
+                 url: "/jido",
+                 data: {
+                     REFINE_WGS84_LOGT: gyundo,
+                     REFINE_WGS84_LAT: wedo
+                 },
+                 success: function (response) {
+                     console.log(response)
+                 }
+             })
+         }
+
 
 
 
@@ -382,13 +396,14 @@
         map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
         averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
         minLevel: 10 // 클러스터 할 최소 지도 레벨
+        disableClickZoom: true //필수요소
     });
 
 
     var 맛집데이터 = [
-        [37.55321, 126.972613, '<div style="padding: 5px">맛집1</div>'],
-        [37.558907, 126.978305, '<div style="padding: 5px">맛집2</div>'],
-        [37.55893317244327, 126.94417826730081, '<div style="padding: 5px">맛집3</div>']
+        [37.55321, 126.972613, '<div style="padding: 20px">맛집1</div>'],
+        [37.558907, 126.978305, '<div style="padding: 20px">맛집2</div>'],
+        [37.55893317244327, 126.94417826730081, '<div style="padding: 20px">맛집3</div>']
     ];
 
     var markers = [];
@@ -410,7 +425,7 @@
         kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
     }
 
-
+test입니다
     // 클러스터러에 마커들을 추가합니다
     clusterer.addMarkers(markers);
 
