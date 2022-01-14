@@ -16,10 +16,14 @@ db = client.sparta_3team
 ## URL 별로 함수명이 같거나,
 ## route('/') 등의 주소가 같으면 안됩니다.
 
-# index.html 불러오기
+# index_.html 불러오기
 @app.route('/')
 def home():
+<<<<<<< HEAD
+    return render_template('else3.html')
+=======
     return render_template('matView.html')
+>>>>>>> 270cae914074bc04851cb07f00b84516a326c11a
 
 
 # DB작성(이름, 리뷰, 별점)
@@ -72,7 +76,6 @@ def get_datas():
 
    for names in rows:
       name = names.select_one('restrt_nm').text
-
       juso = names.select_one('REFINE_ROADNM_ADDR').text
       callnumber = names.select_one('TASTFDPLC_TELNO').text
       gyundo = names.select_one('REFINE_WGS84_LOGT').text
@@ -86,7 +89,6 @@ def get_datas():
       # print(dic)
       db.matjipjido.insert_one(dic)
    return rows
-
 # app.py를 run할때 Api를 새로 불러옵니다
 def insert_all():
     db.matjipjido.drop()  # matjipjido 콜렉션을 모두 지워줍니다.

@@ -1,12 +1,22 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <title>카드테스트</title>
+    <title>맛집코끼리</title>
+
+
     <style>
+        .mybtn {
+            width: 200px;
+            height: 100px;
+        }
+
         * {
             box-sizing: border-box;
         }
@@ -189,18 +199,116 @@
                 width: calc(200% + 30px);
             }
         }
+
     </style>
+    <!-- 밑의 내용은 app.py의 데이터 연결내용입니다 -->
+    <script>
+        <!-- 리뷰저장하기 -->
+        $(document).ready(function () {
+                call_review();
+            });
+
+
+         function make_review() {
+        let name = $('#name').val();
+        let review = $('#review').val();
+        let star = $('#star').val();
+
+        $.ajax({
+                type: "POST",
+                url: "/review",
+                data: {name_give: name, review_give: review, star_give: star},
+                success: function (response) {
+                    alert(response["msg"]);
+                    window.location.reload();
+                }
+            }
+        )
+    }
+
+    <!-- 리뷰 불러오기 -->
+    function call_review() {
+        $.ajax({
+            type: "GET",
+            url: "/review",
+            data: {},
+            success: function (response)
+            {
+                let reviews = response['all_reviews']
+
+                for (let i = 0; i < reviews.length; i++)
+                {
+                    let name = reviews[i]['name']
+                    let review = reviews[i]['review']
+                    let star = reviews[i]['star']
+
+                    let temp_html = `<tr>
+                                        <td>${name}</td>
+                                        <td>${review}</td>
+                                        <td>${star}</td>
+                                     </tr>`
+
+                    $('#card-box').append(temp_html)
+
+                }
+            }
+
+        })
+    }
+
+    <!-- DB 불러오기 -->
+
+    $(document).ready(function () {
+                showlist();
+            });
+
+            function showlist() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/list',
+                    data: {},
+                    success: function (response) {
+                        let matjip_list = response['all_list'];
+
+                        for (let i =0; i<matjip_list.length;i++){
+                            let name = matjip_list[i]['name']
+                            let juso = matjip_list[i]['juso']
+                            let callnumber = matjip_list[i]['callnumber']
+                            let gyundo = matjip_list[i]['gyundo']
+                            let wedo = matjip_list[i]['wedo']
+
+                            console.log(name,juso,callnumber,gyundo,wedo)
+
+                            let temp_html = `${name},${juso},${callnumber},${gyundo},${wedo}`
+
+                            $('#DBLIst')
+
+                        }
+                    }
+                });
+            }
+
+    </script>
+
+
 </head>
+
 <body>
+
+
+
+<h1>서버 테스트중입니다.</h1>
+<!-- 지도를 표시할 div 입니다 -->
+<div id="map" style="width:500px;height:500px;"></div>
 <div class="wrapper">
     <div class="cards">
 
-        <div class=" card [ is-collapsed ] ">
+        <div class=" card [ is-collapsed ] " >
             <div class="card__inner [ js-expander ]">
                 <span>리뷰1</span>
                 <i class="fa fa-folder-o"></i>
             </div>
-            <div class="card__expander">
+            <div class="card__expander" id="card-box">
                 <i class="fa fa-close [ js-collapser ]"></i>
                 리뷰내용
             </div>
@@ -211,7 +319,7 @@
                 <span>리뷰2</span>
                 <i class="fa fa-folder-o"></i>
             </div>
-            <div class="card__expander">
+            <div class="card__expander" >
                 <i class="fa fa-close [ js-collapser ]"></i>
                 리뷰내용
             </div>
@@ -297,8 +405,106 @@
     </div>
 
 </div>
+<!-- 지도 표시할 script입니다 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=880565b3d094debea715c9c1ebbd1bbe"></script>
 <script>
-    var $cell = $('.card');
+    var DBLIst = document
+
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(37.556125, 126.972336), // 지도의 중심좌표
+            level: 13 // 지도의 확대 레벨
+        };
+
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다
+    var positions = [
+        {
+            content: '<div>카카오</div>',
+            latlng: new kakao.maps.LatLng(37.554708, 126.974248)
+        },
+        {
+            content: '<div>생태연못</div>',
+            latlng: new kakao.maps.LatLng(37.553245, 126.974666)
+        },
+        {
+            content: '<div>텃밭</div>',
+            latlng: new kakao.maps.LatLng(37.554444, 126.976275)
+        },
+        {
+            content: '<div>근린공원</div>',
+            latlng: new kakao.maps.LatLng(37.555881, 126.967960)
+        }
+    ];
+
+    for (var i = 0; i < positions.length; i++) {
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            map: map, // 마커를 표시할 지도
+            position: positions[i].latlng // 마커의 위치
+        });
+
+        // 마커에 표시할 인포윈도우를 생성합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: positions[i].content // 인포윈도우에 표시할 내용
+        });
+
+        // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+        // 이벤트 리스너로는 클로저를 만들어 등록합니다
+        // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+        kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+        kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+    }
+
+    // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+    function makeOverListener(map, marker, infowindow) {
+        return function () {
+            infowindow.open(map, marker);
+        };
+    }
+
+    // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+    function makeOutListener(infowindow) {
+        return function () {
+            infowindow.close();
+        };
+    }
+
+    /* 아래와 같이도 할 수 있습니다 */
+    /*
+    for (var i = 0; i < positions.length; i ++) {
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            map: map, // 마커를 표시할 지도
+            position: positions[i].latlng // 마커의 위치
+        });
+
+        // 마커에 표시할 인포윈도우를 생성합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: positions[i].content // 인포윈도우에 표시할 내용
+        });
+
+        // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
+        // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+        (function(marker, infowindow) {
+            // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다
+            kakao.maps.event.addListener(marker, 'mouseover', function() {
+                infowindow.open(map, marker);
+            });
+
+            // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
+            kakao.maps.event.addListener(marker, 'mouseout', function() {
+                infowindow.close();
+            });
+        })(marker, infowindow);
+    }
+    */
+
+
+
+    //아래 내용은 카드에대한 script입니다
+        var $cell = $('.card');
 
     //open and close card when clicked on card
     $cell.find('.js-expander').click(function () {
@@ -330,7 +536,31 @@
         $cell.not($thisCell).removeClass('is-inactive');
 
     });
+
+
 </script>
 
+<div><input type="text" id="name">맛집 이름</div>
+<div><input type="text" id="review">리뷰</div>
+<div><input type="text" id="star">별점</div>
+
+<button type="button" onclick="make_review()" class="btn btn-primary mybtn"> 리뷰 작성하기</button>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">맛집 이름</th>
+        <th scope="col">리뷰</th>
+        <th scope="col">별점</th>
+    </tr>
+    </thead>
+    <tbody id="reviews-box">
+    </tbody>
+</table>
+
+
 </body>
+
 </html>
+
+<!DOCTYPE html>
