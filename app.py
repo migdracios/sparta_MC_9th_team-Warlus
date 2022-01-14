@@ -16,10 +16,10 @@ db = client.sparta_3team
 ## URL 별로 함수명이 같거나,
 ## route('/') 등의 주소가 같으면 안됩니다.
 
-# index.html 불러오기
+# index_.html 불러오기
 @app.route('/')
 def home():
-    return render_template('index_ys.html')
+    return render_template('else3.html')
 
 
 # DB작성(이름, 리뷰, 별점)
