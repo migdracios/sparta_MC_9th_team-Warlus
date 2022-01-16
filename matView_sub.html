@@ -26,7 +26,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&family=Mochiy+Pop+P+One&family=Pacifico&display=swap" rel="stylesheet">
 
 
     <style>
@@ -37,7 +37,11 @@
 
         * {
 
+            font-family: 'Abril Fatface', cursive;
+            font-family: 'Black Han Sans', sans-serif;
             font-family: 'Gowun Batang', serif;
+            font-family: 'Mochiy Pop P One', sans-serif;
+            font-family: 'Pacifico', cursive;
         }
 
         body {
@@ -58,27 +62,27 @@
             border-radius: 30px;
             width: 1500px;
 
-            background-color: white;
-            margin-top: 1000px;
+            background-color: whitesmoke;
+
             margin: auto;
         }
 
         .top_alert {
             background-color: #ffe5cb;
-            height: 100px;
+            border: #ffe5cb;
+            height: 50px;
         }
 
-        .header_pr{
+        .header_pr {
+            border: red solid 1px;
             display: inline-block;
+            margin-top: 20px;
         }
 
-        .header_img{
+        .header_img {
             border-radius: 15px;
-            width: 700px;
-            height: 500px;
-            float: right;
-            margin-top: 50px;
-            margin-right: 100px;
+            display: block;
+            margin: auto;
 
 
         }
@@ -86,7 +90,8 @@
         .header_title {
             width: 300px;
             margin-top: 40px;
-            margin-left: 80px;
+            margin-bottom: 50px;
+            margin-left: 20px;
             font-size: 30px;
             font-weight: bold;
         }
@@ -106,7 +111,7 @@
         }
 
         .header_btn {
-            width: 100px;
+            width: 120px;
             height: 40px;
             margin-top: 25px;
             margin-left: 80px;
@@ -114,10 +119,11 @@
         }
 
         .info_howto {
-            margin-top: 200px;
+            margin-top: 600px;
             text-align: center;
-            font-size: 35px;
+            font-size: 50px;
             font-weight: bold;
+            font-family: 'Abril Fatface', cursive;
         }
 
         .square_sel_pr {
@@ -158,37 +164,43 @@
 
         }
 
-         .info_let_see {
-             width: 1500px;
-             height: 60px;
-             margin-top: 50px;
-             margin-bottom: 20px;
-             text-align: center;
-             font-size: 35px;
-             font-weight: bold;
-         }
+        .info_let_see {
+            width: 1500px;
+            height: 60px;
+            margin-top: 150px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 35px;
+            font-weight: bold;
+        }
 
-        .loc_dropR{
+        .loc_dropR {
             background-color: crimson;
             width: 250px;
             height: 40px;
 
         }
 
-        .dropdown-menu{
+        .dropdown-menu {
             width: 250px;
 
         }
 
-        .info_text{
+        .dropdown-item {
+            font-family: 'Gowun Batang', serif;
+        }
+
+        .info_text {
             text-align: center;
             font-weight: bold;
-            margin-top: 30px;
+            font-family: 'Gowun Batang', serif;
+            color: white;
+            margin-top: 60px;
             margin-bottom: 30px;
             font-size: 25px;
         }
 
-        .info_img{
+        .info_img {
             display: block;
             object-fit: cover;
             width: 150px;
@@ -236,29 +248,34 @@
 <!-- 포스터 박스 태그 입니다 -->
 <div class="poster_box">
 
+    <!-- 최상단 헤더 제목 태그 입니다 -->
+        <div class="header_title">
+            <img src="image\seal2.png"/> <span style="font-size: 20px; font-family: 'Pacifico', cursive">team Walrus</span>
+        </div>
+
+    <!-- 상단부 헤더 이미지 태그 입니다-->
+        <div >
+            <img class="header_img" style="width: 1500px; height: 844px;" src="image\header_black.jpg"/>
+        </div>
+
     <!-- 상단부 헤더 부모 박스 태그 입니다 -->
     <div class="header_pr">
-        <!-- 최상단 헤더 제목 태그 입니다 -->
-        <div class="header_title">
-            <img src="image\seal2.png" /> team Walrus
-        </div>
+
+
         <!-- 상단 헤더 부제 태그 입니다 -->
         <div class="header_subTitle">
-            <img src="image\matview_font.png" />
+            <img style="width: 300px; height: 160px" src="image\matview_font.png"/>
         </div>
         <!-- 상단 헤더 부제 밑 설명 태그 입니다 -->
         <div class="header_info">
-            <p style="line-height: 0.3em">당신만의 맛집을 찾아보세요!</p>
-            그리고, 맛있게 드세요! ^~^
+            <p style="line-height: 0.3em; font-family: 'Gowun Batang', serif; font-size: 20px ">당신만의 맛집을 찾아보세요!</p>
+            <p style="line-height: 0.3em; font-family: 'Gowun Batang', serif; font-size: 20px ">그리고, 맛있게 드세요!</p>
         </div>
         <!-- 상단 헤더 맛집 찾기 버튼 태그 입니다 -->
-        <button type="button" class="btn btn-warning header_btn">맛뷰 해보기</button>
+        <button type="button" style="font-family: 'Black Han Sans', sans-serif" class="btn btn-warning header_btn">맛뷰 해보기</button>
     </div>
 
-    <!-- 상단부 헤더 이미지 태그 입니다-->
-    <div class="header_img">
-            <img src="image\header_image2.jpg" />
-    </div>
+
     <!-- 중단부 인포 텍스트 태그 입니다-->
     <div class="info_howto">
         How to MATVIEW
@@ -268,21 +285,20 @@
     <div class="square_sel_pr">
         <!-- 중단부 인포 이미지_지역 태그 입니다 -->
         <div class="square_sel_loc">
-            <div>
-                <img src="image\seal2.png" />
-            </div>
+
             <div class="info_text">
                 지역 골라보기
             </div>
             <!-- 중단부 인포_지역 이미지 태그 입니다-->
             <div>
-                <img class="info_img" src="image\map.png" />
+                <img class="info_img" src="image\map.png"/>
             </div>
 
             <!-- Default dropright button -->
             <div class="btn-group dropright">
                 <button type="button" class="btn btn-secondary dropdown-toggle loc_dropR" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" style="background-color: palevioletred; margin-top: 30px">
+                        aria-haspopup="true" aria-expanded="false"
+                        style="background-color: palevioletred; margin-top: 30px; font-family: 'Black Han Sans', sans-serif">
                     지역 고르기
                 </button>
                 <div class="dropdown-menu">
@@ -304,9 +320,7 @@
 
         <!-- 중단부 인포 이미지_메뉴 태그 입니다 -->
         <div class="square_sel_men">
-            <div>
-                <img src="image\seal2.png" />
-            </div>
+
 
             <div class="info_text">
                 메뉴 골라보기
@@ -314,13 +328,14 @@
 
             <!-- 중단부 인포_지역 이미지 태그 입니다-->
             <div>
-                <img class="info_img" src="image\pizza.png" />
+                <img class="info_img" src="image\pizza.png"/>
             </div>
 
             <!-- Default dropright button -->
             <div class="btn-group dropright">
                 <button type="button" class="btn btn-secondary dropdown-toggle loc_dropR" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" style="background-color: dodgerblue; margin-top: 30px">
+                        aria-haspopup="true" aria-expanded="false"
+                        style="background-color: dodgerblue; margin-top: 30px; font-family: 'Black Han Sans', sans-serif">
                     메뉴 고르기
                 </button>
                 <div class="dropdown-menu">
@@ -339,21 +354,19 @@
 
         <!-- 중단부 인포 이미지_인기 태그 입니다 -->
         <div class="square_sel_rec">
-            <div>
-                <img src="image\seal2.png" />
-            </div>
+
             <div class="info_text">
                 추천 태그
             </div>
             <!-- 중단부 인포_지역 이미지 태그 입니다-->
             <div>
-                <img class="info_img" src="image\dev.png" />
+                <img class="info_img" src="image\dev.png"/>
             </div>
             <!-- Default dropup button -->
             <!-- Default dropright button -->
             <div class="btn-group dropright">
                 <button type="button" class="btn btn-secondary dropdown-toggle loc_dropR" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" style="background-color: violet; margin-top: 30px">
+                        aria-haspopup="true" aria-expanded="false" style="background-color: violet; margin-top: 30px; font-family: 'Black Han Sans', sans-serif">
                     인기 태그
                 </button>
                 <div class="dropdown-menu">
@@ -371,7 +384,7 @@
     <!-- 중단부 인포 버튼 태그 입니다-->
     <button type="button" class="btn btn-info info_let_see">Let Me See . . .</button>
     <!-- 중단부 드롭다운 옵션 얼럿 태그 입니다-->
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div class="alert alert-warning alert-dismissible fade show" style="font-family: 'Gowun Batang', serif" role="alert">
         <strong>Holy guacamole!</strong> 지금 dropdown option 을 선택 중입니다
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -382,8 +395,6 @@
     <div id="map" class="kmap" style="width:100%;height:500px;"></div>
 
 </div>
-
-
 
 
 <!-- 지도 표시할 script입니다 -->

@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>스파르타 메이킹챌린지 ㅣ 팀 바다코끼리</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&family=Mochiy+Pop+P+One&family=Pacifico&display=swap"
+          rel="stylesheet">
+
+
+    <style>
+        .mybtn {
+            width: 200px;
+            height: 100px;
+        }
+
+        * {
+
+            font-family: 'Abril Fatface', cursive;
+            font-family: 'Black Han Sans', sans-serif;
+            font-family: 'Gowun Batang', serif;
+            font-family: 'Mochiy Pop P One', sans-serif;
+            font-family: 'Pacifico', cursive;
+        }
+
+        body {
+            background: #ffe5cb;
+            font-family: "Slabo 27px", serif;
+            color: #333a45;
+        }
+
+
+        .kmap {
+            margin: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .poster_box {
+            border-radius: 30px;
+            width: 1500px;
+
+            background-color: whitesmoke;
+
+            margin: auto;
+        }
+
+        .top_alert {
+            background-color: #ffe5cb;
+            border: #ffe5cb;
+            height: 50px;
+        }
+
+        .header_pr {
+            border: red solid 1px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .header_img {
+            border-radius: 15px;
+            display: block;
+            margin: auto;
+
+
+        }
+
+        .header_title {
+            width: 300px;
+            margin-top: 40px;
+            margin-bottom: 50px;
+            margin-left: 20px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .header_subTitle {
+            width: 300px;
+            margin-top: 100px;
+            margin-left: 80px;
+            font-weight: bold;
+            font-size: 60px;
+        }
+
+        .header_info {
+            width: 300px;
+            margin-top: 40px;
+            margin-left: 80px;
+        }
+
+        .header_btn {
+            width: 120px;
+            height: 40px;
+            margin-top: 25px;
+            margin-left: 80px;
+
+        }
+
+        .info_howto {
+            margin-top: 200px;
+            text-align: center;
+            font-size: 50px;
+            font-weight: bold;
+            font-family: 'Abril Fatface', cursive;
+        }
+
+        .square_sel_pr {
+            margin-top: 50px;
+            display: flex;
+        }
+
+        .square_sel_loc {
+            background-color: indianred;
+            border-radius: 5px;
+            width: 350px;
+            height: 560px;
+            margin-top: 50px;
+            margin-left: 9%;
+
+
+        }
+
+        .square_sel_men {
+            background-color: cornflowerblue;
+            border-radius: 5px;
+            width: 350px;
+            height: 560px;
+            margin-top: 150px;
+            margin-left: 13%;
+
+
+        }
+
+        .square_sel_rec {
+            background-color: mediumpurple;
+            border-radius: 5px;
+            width: 350px;
+            height: 560px;
+            margin-top: 250px;
+            margin-left: 13%;
+
+
+        }
+
+        .info_let_see {
+            width: 100%;
+            height: 60px;
+            margin-top: 150px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .loc_dropR {
+            background-color: crimson;
+            width: 350px;
+            height: 70px;
+            margin-top: 50px;
+            font-size: 25px;
+
+        }
+
+        .dropdown-menu {
+            width: 230px;
+
+        }
+
+        .dropdown-item {
+            font-family: 'Gowun Batang', serif;
+        }
+
+        .info_text {
+            text-align: center;
+            font-weight: bold;
+            font-family: 'Gowun Batang', serif;
+            color: white;
+            margin-top: 60px;
+            margin-bottom: 30px;
+            font-size: 25px;
+        }
+
+        .info_img {
+            display: block;
+            object-fit: cover;
+            width: 250px;
+            height: 250px;
+            margin: auto;
+        }
+
+        #mouse-scroll {
+            style: block;
+        }
+
+        #mouse-scroll {
+            position: absolute;
+            margin: auto;
+            left: 50%;
+            top: 900px;
+            -webkit-transform: translateX(-50%);
+            z-index: 9999;
+        }
+
+        #mouse-scroll span {
+            display: block;
+            width: 5px;
+            height: 5px;
+            -ms-transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            transform: rotate(45deg);
+            border-right: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            margin: 0 0 3px 8px;
+        }
+
+        #mouse-scroll .mouse {
+            height: 33px;
+            width: 22px;
+            border-radius: 10px;
+            -webkit-transform: none;
+            -ms-transform: none;
+            transform: none;
+            border: 2px solid #ffffff;
+            top: 170px;
+        }
+
+        #mouse-scroll .down-arrow-1 {
+            margin-top: 6px;
+        }
+
+        #mouse-scroll .down-arrow-1, #mouse-scroll .down-arrow-2, #mouse-scroll .down-arrow-3 {
+            -webkit-animation: mouse-scroll 1s infinite;
+            -moz-animation: mouse-scroll 1s infinite;
+        }
+
+        #mouse-croll .down-arrow-1 {
+            -webkit-animation-delay: .1s;
+            -moz-animation-delay: .1s;
+            -webkit-animation-direction: alternate;
+        }
+
+        #mouse-scroll .down-arrow-2 {
+            -webkit-animation-delay: .2s;
+            -moz-animation-delay: .2s;
+            -webkit-animation-direction: alternate;
+        }
+
+        #mouse-scroll .down-arrow-3 {
+            -webkit-animation-delay: .3s;
+            -moz-animation-dekay: .3s;
+            -webkit-animation-direction: alternate;
+        }
+
+        #mouse-scroll .mouse-in {
+            height: 5px;
+            width: 2px;
+            display: block;
+            margin: 5px auto;
+            background: #ffffff;
+            position: relative;
+        }
+
+        #mouse-scroll .mouse-in {
+            -webkit-animation: animated-mouse 1.2s ease infinite;
+            moz-animation: mouse-animated 1.2s ease infinite;
+        }
+
+        @-webkit-keyframes animated-mouse {
+            0% {
+                opacity: 1;
+                -webkit-transform: translateY(0);
+                -ms-transform: translateY(0);
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                -webkit-transform: translateY(6px);
+                -ms-transform: translateY(6px);
+                transform: translateY(6px);
+            }
+        }
+
+        @-webkit-keyframes mouse-scroll {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: .5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes mouse-scroll {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .run_matview{
+            background-color: white;
+            border-radius: 15px;
+            width: 300px;
+            display: block;
+            margin: 100px auto 100px auto;
+            font-family: 'Pacifico', cursive;
+            font-size: 50px;
+            text-align: center;
+
+        }
+    </style>
+
+
+    <!-- 밑의 내용은 app.py의 데이터 연결내용입니다 -->
+    <script>
+        $(document).ready(function () {
+            call_review();
+        });
+
+
+        function make_review() {
+            let name = $('#name').val();
+            let review = $('#review').val();
+            let star = $('#star').val();
+
+            $.ajax({
+                    type: "POST",
+                    url: "/review",
+                    data: {name_give: name, review_give: review, star_give: star},
+                    success: function (response) {
+                        alert(response["msg"]);
+                        window.location.reload();
+                    }
+                }
+            )
+        }
+
+
+    </script>
+
+
+</head>
+
+<body>
+
+
+<!-- 상단부 헤더 이미지 태그 입니다-->
+<div>
+    <img class="header_img" style="width: 100%; height: 1150px;" src="image\header_black4.jpg"/>
+</div>
+<!-- 상단부 스크롤 버튼 태그 입니다 -->
+<a href="#">
+    <div id="mouse-scroll">
+        <div class="mouse">
+            <div class="mouse-in"></div>
+        </div>
+        <div>
+            <span class="down-arrow-1"></span>
+            <span class="down-arrow-2"></span>
+            <span class="down-arrow-3"></span>
+        </div>
+    </div>
+</a>
+
+<!-- 중단부 인포 텍스트 태그 입니다-->
+<div class="info_howto">
+    How to MATVIEW
+</div>
+
+<!-- 중단부 인포 부모 박스 태그 입니다-->
+<div class="square_sel_pr">
+    <!-- 중단부 인포 이미지_지역 태그 입니다 -->
+    <div class="square_sel_loc">
+
+        <div class="info_text">
+            지역 골라보기
+        </div>
+        <!-- 중단부 인포_지역 이미지 태그 입니다-->
+        <div>
+            <img class="info_img" src="image\map.png"/>
+        </div>
+
+        <!-- Default dropright button -->
+        <div class="btn-group dropright">
+            <button type="button" class="btn btn-secondary dropdown-toggle loc_dropR" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"
+                    style="background-color: palevioletred; margin-top: 30px; font-family: 'Black Han Sans', sans-serif">
+                지역 고르기
+            </button>
+            <div class="dropdown-menu">
+                <!-- Dropdown menu links -->
+                <a class="dropdown-item" href="#">서울특별시</a>
+                <a class="dropdown-item" href="#">부산광역시</a>
+                <a class="dropdown-item" href="#">대구광역시</a>
+                <a class="dropdown-item" href="#">대전광역시</a>
+                <a class="dropdown-item" href="#">울산광역시</a>
+                <a class="dropdown-item" href="#">광주광역시</a>
+                <a class="dropdown-item" href="#">경기도</a>
+                <a class="dropdown-item" href="#">강원도</a>
+                <a class="dropdown-item" href="#">충청도</a>
+                <a class="dropdown-item" href="#">경상도</a>
+                <a class="dropdown-item" href="#">전라도</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 중단부 인포 이미지_메뉴 태그 입니다 -->
+    <div class="square_sel_men">
+
+
+        <div class="info_text">
+            메뉴 골라보기
+        </div>
+
+        <!-- 중단부 인포_지역 이미지 태그 입니다-->
+        <div>
+            <img class="info_img" src="image\pizza.png"/>
+        </div>
+
+        <!-- Default dropright button -->
+        <div class="btn-group dropright">
+            <button type="button" class="btn btn-secondary dropdown-toggle loc_dropR" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"
+                    style="background-color: dodgerblue; margin-top: 30px; font-family: 'Black Han Sans', sans-serif">
+                메뉴 고르기
+            </button>
+            <div class="dropdown-menu">
+                <!-- Dropdown menu links -->
+                <a class="dropdown-item" href="#">일식</a>
+                <a class="dropdown-item" href="#">한식</a>
+                <a class="dropdown-item" href="#">중식</a>
+                <a class="dropdown-item" href="#">양식</a>
+                <a class="dropdown-item" href="#">분식</a>
+                <a class="dropdown-item" href="#">패스트푸드</a>
+                <a class="dropdown-item" href="#">특이한음식</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 중단부 인포 이미지_인기 태그 입니다 -->
+    <div class="square_sel_rec">
+
+        <div class="info_text">
+            추천 태그
+        </div>
+        <!-- 중단부 인포_지역 이미지 태그 입니다-->
+        <div>
+            <img class="info_img" src="image\dev.png"/>
+        </div>
+        <!-- Default dropup button -->
+        <!-- Default dropright button -->
+        <div class="btn-group dropright">
+            <button type="button" class="btn btn-secondary dropdown-toggle loc_dropR" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"
+                    style="background-color: violet; margin-top: 30px; font-family: 'Black Han Sans', sans-serif">
+                인기 태그
+            </button>
+            <div class="dropdown-menu">
+                <!-- Dropdown menu links -->
+                <a class="dropdown-item" href="#">개발자 Y의 추천</a>
+                <a class="dropdown-item" href="#">개발자 J의 추천</a>
+                <a class="dropdown-item" href="#">개발자 K의 추천</a>
+                <a class="dropdown-item" href="#">개발자 H의 추천</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 중단부 런 맛뷰 태그 입니다-->
+<div>
+    <h3 class = run_matview>Run MatView</h3>
+</div>
+<!-- 중단부 드롭다운 옵션 얼럿 태그 입니다-->
+<div class="alert alert-warning alert-dismissible fade show" style="font-family: 'Gowun Batang', serif" role="alert">
+    <strong>Holy guacamole!</strong> 지금 dropdown option 을 선택 중입니다
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<!-- 지도를 표시할 div 입니다 -->
+<div id="map" class="kmap" style="width:100%;height:500px;"></div>
+
+
+<!-- 지도 표시할 script입니다 -->
+<script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=880565b3d094debea715c9c1ebbd1bbe&libraries=clusterer"></script>
+<script>
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(35.767656775135855, 128.1321971735885), // 지도의 중심좌표
+            level: 13, // 지도의 확대 레벨
+            mapTypeId: kakao.maps.MapTypeId.ROADMAP // 지도종류
+        };
+
+    // 지도를 생성한다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // 마커 클러스터러를 생성합니다
+    var clusterer = new kakao.maps.MarkerClusterer({
+        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+        minLevel: 10 // 클러스터 할 최소 지도 레벨
+    });
+
+    var 데이터 = [
+        [37.55321, 126.972613, '<div style="padding: 5px">내용1</div>'],
+        [37.558907, 126.978305, '<div style="padding: 5px">내용2</div>'],
+        [37.544647, 127.971986, '<div style="padding: 5px">내용3</div>']
+    ];
+    var markers = [];
+    for (var i = 0; i < 데이터.length; i++) {
+        // 지도에 마커를 생성하고 표시한다
+        var marker = new kakao.maps.Marker({
+            position: new kakao.maps.LatLng(데이터[i][0], 데이터[i][1]), // 마커의 좌표
+            map: map // 마커를 표시할 지도 객체
+        });
+        // 인포윈도우를 생성합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: 데이터[i][2]
+        });
+
+        markers.push(marker);
+        kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+        kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+    }
+
+    // 클러스터러에 마커들을 추가합니다
+    clusterer.addMarkers(markers);
+
+    // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+    function makeOverListener(map, marker, infowindow) {
+        return function () {
+            infowindow.open(map, marker);
+        };
+    }
+
+    // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+    function makeOutListener(infowindow) {
+        return function () {
+            infowindow.close();
+        };
+    }
+
+</script>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
