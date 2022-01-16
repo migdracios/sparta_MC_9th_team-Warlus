@@ -19,11 +19,9 @@ db = client.sparta_3team
 # index_.html 불러오기
 @app.route('/')
 def home():
-<<<<<<< HEAD
-    return render_template('else3.html')
-=======
+    return render_template('test_map.html')
     return render_template('matView.html')
->>>>>>> 270cae914074bc04851cb07f00b84516a326c11a
+
 
 
 # DB작성(이름, 리뷰, 별점)
