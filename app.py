@@ -19,7 +19,7 @@ db = client.sparta_3team
 # index_.html 불러오기
 @app.route('/')
 def home():
-    return render_template('다시시작하는마음으로.html')
+    return render_template('final_matView.html')
 
 
 
