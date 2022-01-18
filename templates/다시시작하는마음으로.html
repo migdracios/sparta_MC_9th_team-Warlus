@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <!-- 지도 표시할 script입니다 -->
+    <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=880565b3d094debea715c9c1ebbd1bbe&libraries=clusterer"></script>
+
+    <!-- 지도의 데이터 스크립트 입니다 -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script
+            type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0fac36ed91632bc45044a8bb7e9bc610"
+    ></script>
+    <!-- 스크롤 jquery-->
+    <script
+            type="text/javascript"
+            src="http://code.jquery.com/jquery-latest.js">
+    </script>
+
+
+    <title>뭐가 문제일까</title>
+
+
+    <!--styles-->
+    <style>
+        * {
+            font-family: 'Abril Fatface', cursive;
+            font-family: 'Black Han Sans', sans-serif;
+            font-family: 'Gowun Batang', serif;
+            font-family: 'Mochiy Pop P One', sans-serif;
+            font-family: 'Pacifico', cursive;
+        }
+
+        body {
+            background: #ffe5cb;
+            font-family: "Slabo 27px", serif;
+            color: #333a45;
+        }
+
+        .kmap {
+            margin: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .header_img {
+            border-radius: 15px;
+            display: block;
+            margin: auto;
+        }
+
+        .info_howto {
+            margin-top: 200px;
+            text-align: center;
+            font-size: 50px;
+            font-weight: bold;
+            font-family: 'Abril Fatface', cursive;
+        }
+        .square_sel_pr {
+            margin-top: 50px;
+            display: flex;
+        }
+
+        .square_sel_loc {
+            background-color: indianred;
+            border-radius: 5px;
+            width: 350px;
+            height: 560px;
+            margin-top: 50px;
+            margin-left: 9%;
+        }
+
+        .square_sel_men {
+            background-color: cornflowerblue;
+            border-radius: 5px;
+            width: 350px;
+            height: 560px;
+            margin-top: 150px;
+            margin-left: 13%;
+        }
+
+        .square_sel_rec {
+            background-color: mediumpurple;
+            border-radius: 5px;
+            width: 350px;
+            height: 560px;
+            margin-top: 250px;
+            margin-left: 13%;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0;
+        }
+
+        .info_text {
+            text-align: center;
+            font-weight: bold;
+            font-family: 'Gowun Batang', serif;
+            color: white;
+            margin-top: 60px;
+            margin-bottom: 30px;
+            font-size: 25px;
+        }
+
+        .info_img {
+            display: block;
+            object-fit: cover;
+            width: 250px;
+            height: 250px;
+            margin: auto;
+        }
+
+        #mouse-scroll {
+            style: block;
+        }
+
+        #mouse-scroll {
+            position: absolute;
+            margin: auto;
+            left: 50%;
+            top: 900px;
+            -webkit-transform: translateX(-50%);
+            z-index: 9999;
+        }
+
+        #mouse-scroll span {
+            display: block;
+            width: 5px;
+            height: 5px;
+            -ms-transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            transform: rotate(45deg);
+            border-right: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            margin: 0 0 3px 8px;
+        }
+
+        #mouse-scroll .mouse {
+            height: 33px;
+            width: 22px;
+            border-radius: 10px;
+            -webkit-transform: none;
+            -ms-transform: none;
+            transform: none;
+            border: 2px solid #ffffff;
+            top: 170px;
+        }
+
+        #mouse-scroll .down-arrow-1 {
+            margin-top: 6px;
+        }
+
+        #mouse-scroll .down-arrow-1, #mouse-scroll .down-arrow-2, #mouse-scroll .down-arrow-3 {
+            -webkit-animation: mouse-scroll 1s infinite;
+            -moz-animation: mouse-scroll 1s infinite;
+        }
+
+        #mouse-croll .down-arrow-1 {
+            -webkit-animation-delay: .1s;
+            -moz-animation-delay: .1s;
+            -webkit-animation-direction: alternate;
+        }
+
+        #mouse-scroll .down-arrow-2 {
+            -webkit-animation-delay: .2s;
+            -moz-animation-delay: .2s;
+            -webkit-animation-direction: alternate;
+        }
+
+        #mouse-scroll .down-arrow-3 {
+            -webkit-animation-delay: .3s;
+            -moz-animation-dekay: .3s;
+            -webkit-animation-direction: alternate;
+        }
+
+        #mouse-scroll .mouse-in {
+            height: 5px;
+            width: 2px;
+            display: block;
+            margin: 5px auto;
+            background: #ffffff;
+            position: relative;
+        }
+
+        #mouse-scroll .mouse-in {
+            -webkit-animation: animated-mouse 1.2s ease infinite;
+            moz-animation: mouse-animated 1.2s ease infinite;
+        }
+
+        @-webkit-keyframes animated-mouse {
+            0% {
+                opacity: 1;
+                -webkit-transform: translateY(0);
+                -ms-transform: translateY(0);
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                -webkit-transform: translateY(6px);
+                -ms-transform: translateY(6px);
+                transform: translateY(6px);
+            }
+        }
+
+        @-webkit-keyframes mouse-scroll {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: .5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes mouse-scroll {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .run_matview{
+            background-color: white;
+            border-radius: 15px;
+            width: 300px;
+            display: block;
+            margin: 100px auto 100px auto;
+            font-family: 'Pacifico', cursive;
+            font-size: 50px;
+            text-align: center;
+
+        }
+
+
+
+    </style>
+
+
+</head>
+<body>
+
+
+<!-- 상단부 헤더 이미지 태그 입니다-->
+<div>
+    <img class="header_img" style="width: 100%; height: 1150px;" src="image\header_black4.jpg"/>
+</div>
+<!-- 상단부 스크롤 버튼 태그 입니다 -->
+<a href="#">
+    <div id="mouse-scroll">
+        <div class="mouse">
+            <div class="mouse-in"></div>
+        </div>
+        <div>
+            <span class="down-arrow-1"></span>
+            <span class="down-arrow-2"></span>
+            <span class="down-arrow-3"></span>
+        </div>
+    </div>
+</a>
+
+<!-- 중단부 인포 텍스트 태그 입니다-->
+<div class="info_howto">
+    How to MATVIEW
+</div>
+
+<!-- 중단부 인포 부모 박스 태그 입니다-->
+<div class="square_sel_pr">
+    <!-- 중단부 인포 이미지_지역 태그 입니다 -->
+    <div class="square_sel_loc">
+
+        <div class="info_text">
+            지역 골라보기
+        </div>
+        <!-- 중단부 인포_지역 이미지 태그 입니다-->
+        <div>
+            <img class="info_img" src="image\map.png"/>
+        </div>
+
+        <!-- Default dropright button -->
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+                지역 고르기
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <!-- Dropdown menu links -->
+                <a class="dropdown-item" id="btn2" onclick="seoul()">서울특별시</a>
+                <a class="dropdown-item" id="btn2" onclick="daejeon()">대전광역시</a>
+                <a class="dropdown-item" id="btn2" onclick="busan()">부산광역시</a>
+                <a class="dropdown-item" id="btn2" onclick="daegu()">대구광역시</a>
+                <a class="dropdown-item" id="btn2" onclick="gwangju()">광주광역시</a>
+                <a class="dropdown-item" id="btn2" onclick="ulsan()">울산광역시</a>
+                <a class="dropdown-item" id="btn2" onclick="incheon()">인천광역시</a>
+                <a class="dropdown-item" id="btn2" onclick="jeju()">제주특별자치도</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 중단부 인포 이미지_메뉴 태그 입니다 -->
+    <div class="square_sel_men">
+
+
+        <div class="info_text">
+            메뉴 골라보기
+        </div>
+
+        <!-- 중단부 인포_지역 이미지 태그 입니다-->
+        <div>
+            <img class="info_img" src="image\pizza.png"/>
+        </div>
+
+        <!-- Default dropright button -->
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+                지역 고르기
+            </button>
+            <div class="dropdown-menu">
+                <!-- Dropdown menu links -->
+                <a class="dropdown-item" href="#">일식</a>
+                <a class="dropdown-item" href="#">한식</a>
+                <a class="dropdown-item" href="#">중식</a>
+                <a class="dropdown-item" href="#">양식</a>
+                <a class="dropdown-item" href="#">분식</a>
+                <a class="dropdown-item" href="#">패스트푸드</a>
+                <a class="dropdown-item" href="#">특이한음식</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 중단부 인포 이미지_인기 태그 입니다 -->
+    <div class="square_sel_rec">
+
+        <div class="info_text">
+            추천 태그
+        </div>
+        <!-- 중단부 인포_지역 이미지 태그 입니다-->
+        <div>
+            <img class="info_img" src="image\dev.png"/>
+        </div>
+        <!-- Default dropup button -->
+        <!-- Default dropright button -->
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+                지역 고르기
+            </button>
+            <div class="dropdown-menu">
+                <!-- Dropdown menu links -->
+                <a class="dropdown-item" href="#">개발자 Y의 추천</a>
+                <a class="dropdown-item" href="#">개발자 J의 추천</a>
+                <a class="dropdown-item" href="#">개발자 K의 추천</a>
+                <a class="dropdown-item" href="#">개발자 H의 추천</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 중단부 런 맛뷰 태그 입니다-->
+<div>
+    <h3 class=run_matview>Run MatView</h3>
+</div>
+<!-- 중단부 드롭다운 옵션 얼럿 태그 입니다-->
+<div class="alert alert-warning alert-dismissible fade show" style="font-family: 'Gowun Batang', serif" role="alert">
+    <strong>Holy guacamole!</strong> 지금 dropdown option 을 선택 중입니다
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+
+
+
+
+
+<!-- 여기서부터 지도와 스크롤의 스크립트입니다 -->
+
+
+<script>
+    function seoul() {
+        var moveLatLon = new kakao.maps.LatLng(37.54952047275068, 126.9877909044856);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+    function daejeon() {
+        var moveLatLon = new kakao.maps.LatLng(36.35840744048402, 127.35169517129687);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+    function busan() {
+        var moveLatLon = new kakao.maps.LatLng(35.15937088229944, 129.04982359237417);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+    function daegu() {
+        var moveLatLon = new kakao.maps.LatLng(35.862809292506554, 128.57617295097683);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+    function gwangju() {
+        var moveLatLon = new kakao.maps.LatLng(35.16120532030494, 126.82293416919757);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+    function ulsan() {
+        var moveLatLon = new kakao.maps.LatLng(35.54329980358315, 129.3456479445236);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+    function incheon() {
+        var moveLatLon = new kakao.maps.LatLng(37.47350369548072, 126.67023750511827);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+    function jeju() {
+        var moveLatLon = new kakao.maps.LatLng(33.49969019108693, 126.52553511531994);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+</script>
+
+
+<!-- 지도를 표시할 div 입니다 -->
+<div id="map" class="kmap" style="width:100%;height:500px;"></div>
+
+<!-- 도시를 클릭하면 도시를 보여줍니다 -->
+<script>
+    function seoul() {
+        var moveLatLon = new kakao.maps.LatLng(37.54952047275068, 126.9877909044856);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+    function daejeon() {
+        var moveLatLon = new kakao.maps.LatLng(36.35840744048402, 127.35169517129687);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+    function busan() {
+        var moveLatLon = new kakao.maps.LatLng(35.15937088229944, 129.04982359237417);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+    function daegu() {
+        var moveLatLon = new kakao.maps.LatLng(35.862809292506554, 128.57617295097683);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+    function gwangju() {
+        var moveLatLon = new kakao.maps.LatLng(35.16120532030494, 126.82293416919757);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+    function ulsan() {
+        var moveLatLon = new kakao.maps.LatLng(35.54329980358315, 129.3456479445236);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+    function incheon() {
+        var moveLatLon = new kakao.maps.LatLng(37.47350369548072, 126.67023750511827);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+    function jeju() {
+        var moveLatLon = new kakao.maps.LatLng(33.49969019108693, 126.52553511531994);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+</script>
+
+
+<!-- 스크롤 펑션 스크립트 입니다-->
+<script>
+    function scroll(){
+        var offset = $("#map").offset(); //선택한 태그의 위치를 반환
+
+            //animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함
+
+            $("html").animate({scrollTop: offset.top}, 400);
+    }
+</script>
+
+<script>
+    //스크롤에대한 jquery 입니다.
+      $(document).ready(function () {
+        $("#btn1,#btn2,#btn3,#btn4").click(function () {
+            var offset = $("#map").offset(); //선택한 태그의 위치를 반환
+
+            //animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함
+
+            $("html").animate({scrollTop: offset.top}, 400);
+        });
+    });
+
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(35.767656775135855, 128.1321971735885), // 지도의 중심좌표
+            level: 13, // 지도의 확대 레벨
+            mapTypeId: kakao.maps.MapTypeId.ROADMAP // 지도종류
+        };
+
+    // 지도를 생성한다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+     // 마커 클러스터러를 생성합니다
+    var clusterer = new kakao.maps.MarkerClusterer({
+        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+        minLevel: 10 // 클러스터 할 최소 지도 레벨
+    });
+
+     // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다
+    var 데이터 = [
+            //서울맛집
+            [37.57749233274407, 126.98604658739973, '<div class="mark_info">카페노티드 안국</div>'],
+            [37.56255207348654, 126.98559827156627, '<div class="mark_info">명동교자 본점</div>'],
+            [37.52462817792284, 127.04263461358946, '<div class="mark_info">스케줄 청담</div>'],
+            [37.53598448259359, 126.97222047156214, '<div class="mark_info">몽탄</div>'],
+            [37.53598448259359, 126.97222047156214, '<div class="mark_info">로우앤슬로우</div>'],
+            [37.525406603963155, 127.03670987205962, '<div class="mark_info">호족반 청담</div>'],
+            [37.57402057288615, 126.98967147181573, '<div class="mark_info">온천집 익선</div>'],
+            [37.56834566038699, 126.9304775827864, '<div class="mark_info">목란</div>'],
+            //대전맛집
+            [36.35840744048402, 127.35169517129687, '<div class="mark_info">임진강장어</div>'],
+            [36.789307936278504, 127.12754087155112, '<div class="mark_info">당산오돌</div>'],
+            [36.32769009073234, 127.42729080041626, '<div class="mark_info">성심당 본점</div>'],
+            [36.32681173513397, 127.39545214291932, '<div class="mark_info">태평소국밥 본점</div>'],
+            [36.36457500694532, 127.34128242883602, '<div class="mark_info">카페 인터뷰</div>'],
+            [36.33404610239948, 127.43782665764611, '<div class="mark_info">치앙마이방콕</div>'],
+            [36.359227133688, 127.42662606515651,   '<div class="mark_info">오문창순대국밥</div>'],
+            [36.36699532478072, 127.38054973121982, '<div class="mark_info">베스타뷔페</div>'],
+            //부산맛집
+            [35.153162778549465, 129.12478444858584, '<div class="mark_info">좋은한우</div>'],
+            [35.203429960431244, 129.08385729969294, '<div class="mark_info">오꼬식당</div>'],
+            [35.19705833668, 129.09971547227406, '<div class="mark_info">고메밀면 동래본점</div>'],
+            [35.163215865466945, 129.16638306351865, '<div class="mark_info">해운대암소갈비집</div>'],
+            [35.16887267158675, 129.16636200039707, '<div class="mark_info">해운대가야밀면</div>'],
+            [35.15678020362044, 129.1342897290217, '<div class="mark_info">수변최고돼지국밥</div>'],
+            [35.14842417840112, 129.11385727152978, '<div class="mark_info">동경밥상</div>'],
+            [35.10209565674584, 129.03081932492717, '<div class="mark_info">이재모피자</div>'],
+            //대구맛집
+            [35.83855813828949, 128.5791395770442, '<div class="mark_info">조조칼국수 앞산본점</div>'],
+            [35.85637944710946, 128.58849757154763, '<div class="mark_info">대쿠이 본점</div>'],
+            [35.85531294402579, 128.65034736159353, '<div class="mark_info">리안</div>'],
+            [35.868590812505495, 128.59348979951432, '<div class="mark_info">삼송빵집 본점</div>'],
+            [35.83365578756154, 128.57767343806148, '<div class="mark_info">앞산주택</div>'],
+            [35.981722656574824, 128.6351607831935, '<div class="mark_info">헤이마</div>'],
+            [35.885506679240066, 128.58154052994416, '<div class="mark_info">걸리버막창</div>'],
+            //광주맛집
+            [35.154963711193005, 126.85440773596108, '<div class="mark_info">상무초밥 상무점</div>'],
+            [35.147757154830245, 126.91761728672508, '<div class="mark_info">궁전제과 충장본점</div>'],
+            [35.1911466699724, 126.8304838207219, '<div class="mark_info">초돈</div>'],
+            [35.138970637650836, 126.79486517716452, '<div class="mark_info">송정떡갈비 1호점</div>'],
+            [35.15432486469979, 126.91801085387208, '<div class="mark_info">나주식당</div>'],
+            [35.14991673290416, 126.92481189759543, '<div class="mark_info">스트럭트</div>'],
+            [35.124798461377054, 126.90922878890916, '<div class="mark_info">카페304 충장점</div>'],
+            //울산맛집
+            [35.56532668133025, 129.1224605296966, '<div class="mark_info">언양기와집불고기</div>'],
+            [35.56860325557732, 129.32869231922922, '<div class="mark_info">농도</div>'],
+            [35.56860325557732, 129.32869231922922, '<div class="mark_info">함양집</div>'],
+            [35.54281679351544, 129.3389467626508, '<div class="mark_info">헤이다이닝</div>'],
+            [35.35868095298546, 129.35640810393096, '<div class="mark_info">카페리베리베</div>'],
+            [35.538656231420745, 129.33636780638804, '<div class="mark_info">이중생업</div>'],
+            [37.47265131147812, 126.62475475260705, '<div class="mark_info">온센 본점</div>'],
+            [37.47547269346376, 126.61785233810375, '<div class="mark_info">신승반점 본점</div>'],
+            [37.491287363751724, 126.72887964017917, '<div class="mark_info">바베큐광장 화로구이</div>'],
+            [36.36457500694532, 127.34128242883602, '<div class="mark_info">로니로티 부평점</div>'],
+            [37.43927855691396, 126.43085669493034, '<div class="mark_info">스타파이브</div>'],
+            [37.51453473014412, 126.64927676258034, '<div class="mark_info">경인면옥</div>'],
+            //제주맛집
+            [33.2588794598111, 126.40724334591556, '<div class="mark_info">연돈</div>'],
+            [33.49692277226924, 126.50871809874401, '<div class="mark_info">제주김만복 본점</div>'],
+            [33.51151639111576, 126.52003692513769, '<div class="mark_info">우진해장국</div>'],
+            [33.516824664191134, 126.51707330719294, '<div class="mark_info">자매국수 본점</div>'],
+            [33.50240105680744, 126.51076285478193, '<div class="mark_info">칠돈가 본점</div>'],
+            [33.21769869385963, 126.24989758780404, '<div class="mark_info">미영이네식당</div>'],
+            [33.51008457746911, 126.53104430929686, '<div class="mark_info">용초밥</div>'],
+
+            ]
+
+     var markers = [];
+        for (var i = 0; i < 데이터.length; i++) {
+            // 지도에 마커를 생성하고 표시한다
+            var marker = new kakao.maps.Marker({
+                position: new kakao.maps.LatLng(데이터[i][0], 데이터[i][1]), // 마커의 좌표
+                map: map // 마커를 표시할 지도 객체
+            });
+            // 인포윈도우를 생성합니다
+            var infowindow = new kakao.maps.InfoWindow({
+                content: 데이터[i][2]
+            });
+
+            markers.push(marker);
+            kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+            kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+        }
+
+    // 클러스터러에 마커들을 추가합니다
+    clusterer.addMarkers(markers);
+
+
+    // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+    function makeOverListener(map, marker, infowindow) {
+        return function () {
+            infowindow.open(map, marker);
+        };
+    }
+
+    // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+    function makeOutListener(infowindow) {
+        return function () {
+            infowindow.close();
+        };
+    }
+
+</script>
+
+
+</body>
+</html>
