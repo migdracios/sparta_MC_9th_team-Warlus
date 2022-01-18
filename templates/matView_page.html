@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>스파르타 메이킹챌린지 ㅣ 팀 바다코끼리</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&family=Mochiy+Pop+P+One&family=Pacifico&display=swap"
+          rel="stylesheet">
+
+
+    <style>
+        .mybtn {
+            width: 200px;
+            height: 100px;
+        }
+
+        * {
+
+            font-family: 'Abril Fatface', cursive;
+            font-family: 'Black Han Sans', sans-serif;
+            font-family: 'Gowun Batang', serif;
+            font-family: 'Mochiy Pop P One', sans-serif;
+            font-family: 'Pacifico', cursive;
+        }
+
+        body {
+            background: #ffe5cb;
+            font-family: "Slabo 27px", serif;
+            color: #333a45;
+        }
+
+
+        .kmap {
+            margin: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .poster_box {
+            border-radius: 30px;
+            width: 1500px;
+
+            background-color: whitesmoke;
+
+            margin: auto;
+        }
+
+        .top_alert {
+            background-color: #ffe5cb;
+            border: #ffe5cb;
+            height: 50px;
+        }
+
+        .header_pr {
+            border: red solid 1px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .header_img {
+            border-radius: 15px;
+            display: block;
+            margin: auto;
+
+
+        }
+
+        .header_title {
+            width: 300px;
+            margin-top: 40px;
+            margin-bottom: 50px;
+            margin-left: 20px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .header_subTitle {
+            width: 300px;
+            margin-top: 100px;
+            margin-left: 80px;
+            font-weight: bold;
+            font-size: 60px;
+        }
+
+        .header_info {
+            width: 300px;
+            margin-top: 40px;
+            margin-left: 80px;
+        }
+
+        .header_btn {
+            width: 120px;
+            height: 40px;
+            margin-top: 25px;
+            margin-left: 80px;
+
+        }
+
+        .info_howto {
+            margin-top: 200px;
+            text-align: center;
+            font-size: 50px;
+            font-weight: bold;
+            font-family: 'Abril Fatface', cursive;
+        }
+
+        .square_sel_pr {
+            margin-top: 50px;
+            display: flex;
+        }
+
+        .square_sel_loc {
+            background-color: indianred;
+            border-radius: 5px;
+            width: 350px;
+            height: 560px;
+            margin-top: 50px;
+            margin-left: 9%;
+
+
+        }
+
+        .square_sel_men {
+            background-color: cornflowerblue;
+            border-radius: 5px;
+            width: 350px;
+            height: 560px;
+            margin-top: 150px;
+            margin-left: 13%;
+
+
+        }
+
+        .square_sel_rec {
+            background-color: mediumpurple;
+            border-radius: 5px;
+            width: 350px;
+            height: 560px;
+            margin-top: 250px;
+            margin-left: 13%;
+
+
+        }
+
+        .info_let_see {
+            width: 100%;
+            height: 60px;
+            margin-top: 150px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .loc_dropR {
+            background-color: crimson;
+            width: 350px;
+            height: 70px;
+            margin-top: 50px;
+            font-size: 25px;
+
+        }
+
+        .dropdown-menu {
+            width: 230px;
+
+
+        }
+
+        .dropdown-item {
+            font-family: 'Gowun Batang', serif;
+        }
+
+        .info_text {
+            text-align: center;
+            font-weight: bold;
+            font-family: 'Gowun Batang', serif;
+            color: white;
+            margin-top: 60px;
+            margin-bottom: 30px;
+            font-size: 25px;
+        }
+
+        .info_img {
+            display: block;
+            object-fit: cover;
+            width: 250px;
+            height: 250px;
+            margin: auto;
+        }
+
+        #mouse-scroll {
+            style: block;
+        }
+
+        #mouse-scroll {
+            position: absolute;
+            margin: auto;
+            left: 50%;
+            top: 900px;
+            -webkit-transform: translateX(-50%);
+            z-index: 9999;
+        }
+
+        #mouse-scroll span {
+            display: block;
+            width: 5px;
+            height: 5px;
+            -ms-transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            transform: rotate(45deg);
+            border-right: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            margin: 0 0 3px 8px;
+        }
+
+        #mouse-scroll .mouse {
+            height: 33px;
+            width: 22px;
+            border-radius: 10px;
+            -webkit-transform: none;
+            -ms-transform: none;
+            transform: none;
+            border: 2px solid #ffffff;
+            top: 170px;
+        }
+
+        #mouse-scroll .down-arrow-1 {
+            margin-top: 6px;
+        }
+
+        #mouse-scroll .down-arrow-1, #mouse-scroll .down-arrow-2, #mouse-scroll .down-arrow-3 {
+            -webkit-animation: mouse-scroll 1s infinite;
+            -moz-animation: mouse-scroll 1s infinite;
+        }
+
+        #mouse-croll .down-arrow-1 {
+            -webkit-animation-delay: .1s;
+            -moz-animation-delay: .1s;
+            -webkit-animation-direction: alternate;
+        }
+
+        #mouse-scroll .down-arrow-2 {
+            -webkit-animation-delay: .2s;
+            -moz-animation-delay: .2s;
+            -webkit-animation-direction: alternate;
+        }
+
+        #mouse-scroll .down-arrow-3 {
+            -webkit-animation-delay: .3s;
+            -moz-animation-dekay: .3s;
+            -webkit-animation-direction: alternate;
+        }
+
+        #mouse-scroll .mouse-in {
+            height: 5px;
+            width: 2px;
+            display: block;
+            margin: 5px auto;
+            background: #ffffff;
+            position: relative;
+        }
+
+        #mouse-scroll .mouse-in {
+            -webkit-animation: animated-mouse 1.2s ease infinite;
+            moz-animation: mouse-animated 1.2s ease infinite;
+        }
+
+        @-webkit-keyframes animated-mouse {
+            0% {
+                opacity: 1;
+                -webkit-transform: translateY(0);
+                -ms-transform: translateY(0);
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                -webkit-transform: translateY(6px);
+                -ms-transform: translateY(6px);
+                transform: translateY(6px);
+            }
+        }
+
+        @-webkit-keyframes mouse-scroll {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: .5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes mouse-scroll {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .run_matview{
+            background-color: white;
+            border-radius: 15px;
+            width: 300px;
+            display: block;
+            margin: 100px auto 100px auto;
+            font-family: 'Pacifico', cursive;
+            font-size: 50px;
+            text-align: center;
+
+        }
+
+
+    </style>
+
+
+    <!-- 밑의 내용은 app.py의 데이터 연결내용입니다 -->
+    <script>
+        $(document).ready(function () {
+            call_review();
+        });
+
+
+        function make_review() {
+            let name = $('#name').val();
+            let review = $('#review').val();
+            let star = $('#star').val();
+
+            $.ajax({
+                    type: "POST",
+                    url: "/review",
+                    data: {name_give: name, review_give: review, star_give: star},
+                    success: function (response) {
+                        alert(response["msg"]);
+                        window.location.reload();
+                    }
+                }
+            )
+        }
+
+
+    </script>
+
+
+</head>
+
+<body>
+
+
+<!-- 상단부 헤더 이미지 태그 입니다-->
+<div>
+    <img class="header_img" style="width: 100%; height: 1150px;" src="image\header_black4.jpg"/>
+</div>
+<!-- 상단부 스크롤 버튼 태그 입니다 -->
+<a href="#">
+    <div id="mouse-scroll">
+        <div class="mouse">
+            <div class="mouse-in"></div>
+        </div>
+        <div>
+            <span class="down-arrow-1"></span>
+            <span class="down-arrow-2"></span>
+            <span class="down-arrow-3"></span>
+        </div>
+    </div>
+</a>
+
+<!-- 중단부 인포 텍스트 태그 입니다-->
+<div class="info_howto">
+    How to MATVIEW
+</div>
+
+<!-- 중단부 인포 부모 박스 태그 입니다-->
+<div class="square_sel_pr">
+    <!-- 중단부 인포 이미지_지역 태그 입니다 -->
+    <div class="square_sel_loc">
+
+        <div class="info_text">
+            지역 골라보기
+        </div>
+        <!-- 중단부 인포_지역 이미지 태그 입니다-->
+        <div>
+            <img class="info_img" src="image\map.png"/>
+        </div>
+
+        <!-- Default dropright button -->
+        <div class="btn-group  dropright">
+            <button id = "dropdownMenuButton" type="button" class="btn btn-secondary dropdown-toggle loc_dropR" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"
+                    style="background-color: palevioletred; margin-top: 30px; font-family: 'Black Han Sans', sans-serif">
+                지역 고르기
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <!-- Dropdown menu links -->
+                <a class="dropdown-item" id="btn2" onclick="seoul()">서울특별시</a>
+                <a class="dropdown-item" id="btn2" onclick="daejeon()">대전광역시</a>
+                <a class="dropdown-item" id="btn2" onclick="busan()">부산광역시</a>
+                <a class="dropdown-item" id="btn2" onclick="daegu()">대구광역시</a>
+                <a class="dropdown-item" id="btn2" onclick="gwangju()">광주광역시</a>
+                <a class="dropdown-item" id="btn2" onclick="ulsan()">울산광역시</a>
+                <a class="dropdown-item" id="btn2" onclick="incheon()">인천광역시</a>
+                <a class="dropdown-item" id="btn2" onclick="jeju()">제주특별자치도</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 중단부 인포 이미지_메뉴 태그 입니다 -->
+    <div class="square_sel_men">
+
+
+        <div class="info_text">
+            메뉴 골라보기
+        </div>
+
+        <!-- 중단부 인포_지역 이미지 태그 입니다-->
+        <div>
+            <img class="info_img" src="image\pizza.png"/>
+        </div>
+
+        <!-- Default dropright button -->
+        <div class="btn-group dropright">
+            <button type="button" class="btn btn-secondary dropdown-toggle loc_dropR" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"
+                    style="background-color: dodgerblue; margin-top: 30px; font-family: 'Black Han Sans', sans-serif">
+                메뉴 고르기
+            </button>
+            <div class="dropdown-menu">
+                <!-- Dropdown menu links -->
+                <a class="dropdown-item" href="#">일식</a>
+                <a class="dropdown-item" href="#">한식</a>
+                <a class="dropdown-item" href="#">중식</a>
+                <a class="dropdown-item" href="#">양식</a>
+                <a class="dropdown-item" href="#">분식</a>
+                <a class="dropdown-item" href="#">패스트푸드</a>
+                <a class="dropdown-item" href="#">특이한음식</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 중단부 인포 이미지_인기 태그 입니다 -->
+    <div class="square_sel_rec">
+
+        <div class="info_text">
+            추천 태그
+        </div>
+        <!-- 중단부 인포_지역 이미지 태그 입니다-->
+        <div>
+            <img class="info_img" src="image\dev.png"/>
+        </div>
+        <!-- Default dropup button -->
+        <!-- Default dropright button -->
+        <div class="btn-group dropright">
+            <button type="button" class="btn btn-secondary dropdown-toggle loc_dropR" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"
+                    style="background-color: violet; margin-top: 30px; font-family: 'Black Han Sans', sans-serif">
+                인기 태그
+            </button>
+            <div class="dropdown-menu">
+                <!-- Dropdown menu links -->
+                <a class="dropdown-item" href="#">개발자 Y의 추천</a>
+                <a class="dropdown-item" href="#">개발자 J의 추천</a>
+                <a class="dropdown-item" href="#">개발자 K의 추천</a>
+                <a class="dropdown-item" href="#">개발자 H의 추천</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 중단부 런 맛뷰 태그 입니다-->
+<div>
+    <h3 class = run_matview>Run MatView</h3>
+</div>
+<!-- 중단부 드롭다운 옵션 얼럿 태그 입니다-->
+<div class="alert alert-warning alert-dismissible fade show" style="font-family: 'Gowun Batang', serif" role="alert">
+    <strong>Holy guacamole!</strong> 지금 dropdown option 을 선택 중입니다
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<!-- 지도를 표시할 div 입니다 -->
+<div id="map" class="kmap" style="width:100%;height:500px;"></div>
+
+
+<!-- 지도 표시할 script입니다 -->
+<script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=880565b3d094debea715c9c1ebbd1bbe&libraries=clusterer"></script>
+
+<!-- 지도의 데이터 스크립트 입니다 -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script>
+    function seoul() {
+        var moveLatLon = new kakao.maps.LatLng(37.54952047275068, 126.9877909044856);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+    function daejeon() {
+        var moveLatLon = new kakao.maps.LatLng(36.35840744048402, 127.35169517129687);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+    function busan() {
+        var moveLatLon = new kakao.maps.LatLng(35.15937088229944, 129.04982359237417);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+    function daegu() {
+        var moveLatLon = new kakao.maps.LatLng(35.862809292506554, 128.57617295097683);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+    function gwangju() {
+        var moveLatLon = new kakao.maps.LatLng(35.16120532030494, 126.82293416919757);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+    function ulsan() {
+        var moveLatLon = new kakao.maps.LatLng(35.54329980358315, 129.3456479445236);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+    function incheon() {
+        var moveLatLon = new kakao.maps.LatLng(37.47350369548072, 126.67023750511827);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+    function jeju() {
+        var moveLatLon = new kakao.maps.LatLng(33.49969019108693, 126.52553511531994);
+        map.setLevel(8)
+        map.setCenter(moveLatLon);
+    }
+</script>
+
+<!-- ? 아직 모름(jin님) 작업 스크립트-->
+<script
+        type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0fac36ed91632bc45044a8bb7e9bc610"
+></script>
+<!-- 스크롤 -->
+<script
+        type="text/javascript"
+        src="http://code.jquery.com/jquery-latest.js">
+</script>
+
+<!-- 스크롤 펑션 스크립트 입니다-->
+<script>
+    function scroll(){
+        var offset = $("#map").offset(); //선택한 태그의 위치를 반환
+
+            //animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함
+
+            $("html").animate({scrollTop: offset.top}, 400);
+    }
+</script>
+
+<script>
+
+    $(document).ready(function () {
+        $("#btn1,#btn2,#btn3,#btn4").click(function () {
+            var offset = $("#map").offset(); //선택한 태그의 위치를 반환
+
+            //animate()메서드를 이용해서 선택한 태그의 스크롤 위치를 지정해서 0.4초 동안 부드럽게 해당 위치로 이동함
+
+            $("html").animate({scrollTop: offset.top}, 400);
+        });
+    });
+
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(35.767656775135855, 128.1321971735885), // 지도의 중심좌표
+            level: 13, // 지도의 확대 레벨
+            mapTypeId: kakao.maps.MapTypeId.ROADMAP // 지도종류
+        };
+
+    // 지도를 생성한다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다
+    var positions = [
+        //서울맛집
+        {
+            content: "<div>카페노티드 안국</div>",
+            latlng: new kakao.maps.LatLng(37.57749233274407, 126.98604658739973),
+        },
+        {
+            content: "<div>명동교자 본점</div>",
+            latlng: new kakao.maps.LatLng(37.56255207348654, 126.98559827156627),
+        },
+        {
+            content: "<div>스케줄 청담 </div>",
+            latlng: new kakao.maps.LatLng(37.52462817792284, 127.04263461358946),
+        },
+        {
+            content: "<div>몽탄</div>",
+            latlng: new kakao.maps.LatLng(37.53598448259359, 126.97222047156214),
+        },
+        {
+            content: "<div>로우앤슬로우 </div>",
+            latlng: new kakao.maps.LatLng(37.53598448259359, 126.97222047156214),
+        },
+        {
+            content: "<div>몽탄</div>",
+            latlng: new kakao.maps.LatLng(37.53598448259359, 126.97222047156214),
+        },
+        {
+            content: "<div>로우앤슬로우</div>",
+            latlng: new kakao.maps.LatLng(37.534009383277755, 126.99419447157277),
+        },
+        {
+            content: "<div>호족반 청담 </div>",
+            latlng: new kakao.maps.LatLng(37.525406603963155, 127.03670987205962),
+        },
+        {
+            content: "<div>온천집 익선 </div>",
+            latlng: new kakao.maps.LatLng(37.57402057288615, 126.98967147181573),
+        },
+        {
+            content: "<div>목란</div>",
+            latlng: new kakao.maps.LatLng(37.56834566038699, 126.9304775827864),
+        },
+        //대전맛집
+        {
+            content: "<div>임진강장어</div>",
+            latlng: new kakao.maps.LatLng(36.35840744048402, 127.35169517129687),
+        },
+        {
+            content: "<div>당산오돌</div>",
+            latlng: new kakao.maps.LatLng(36.789307936278504, 127.12754087155112),
+        },
+        {
+            content: "<div>성심당 본점</div>",
+            latlng: new kakao.maps.LatLng(36.32769009073234, 127.42729080041626),
+        },
+        {
+            content: "<div>태평소국밥 본점</div>",
+            latlng: new kakao.maps.LatLng(36.32681173513397, 127.39545214291932),
+        },
+        {
+            content: "<div>카페 인터뷰</div>",
+            latlng: new kakao.maps.LatLng(36.36457500694532, 127.34128242883602),
+        },
+        {
+            content: "<div>치앙마이방콕</div>",
+            latlng: new kakao.maps.LatLng(36.33404610239948, 127.43782665764611),
+        },
+        {
+            content: "<div>오문창순대국밥</div>",
+            latlng: new kakao.maps.LatLng(36.359227133688, 127.42662606515651),
+        },
+        {
+            content: "<div>베스타뷔페</div>",
+            latlng: new kakao.maps.LatLng(36.36699532478072, 127.38054973121982),
+        },
+        //부산 맛집
+         {
+            content: "<div>좋은한우</div>",
+            latlng: new kakao.maps.LatLng(35.153162778549465, 129.12478444858584),
+        },
+         {
+            content: "<div>오꼬식당 </div>",
+            latlng: new kakao.maps.LatLng(35.203429960431244, 129.08385729969294),
+        },
+         {
+            content: "<div>고메밀면 동래본점 </div>",
+            latlng: new kakao.maps.LatLng(35.19705833668, 129.09971547227406),
+        },
+         {
+            content: "<div>해운대암소갈비집 </div>",
+            latlng: new kakao.maps.LatLng(35.163215865466945, 129.16638306351865),
+        },
+         {
+            content: "<div>해운대가야밀면 </div>",
+            latlng: new kakao.maps.LatLng(35.16887267158675, 129.16636200039707),
+        },
+         {
+            content: "<div>수변최고돼지국밥</div>",
+            latlng: new kakao.maps.LatLng(35.15678020362044, 129.1342897290217),
+        },
+         {
+            content: "<div>동경밥상</div>",
+            latlng: new kakao.maps.LatLng(35.14842417840112, 129.11385727152978),
+        },
+         {
+            content: "<div>이재모피자 </div>",
+            latlng: new kakao.maps.LatLng(35.10209565674584, 129.03081932492717),
+        },
+        //대구맛집
+        {
+            content: "<div>조조칼국수 앞산본점</div>",
+            latlng: new kakao.maps.LatLng(35.83855813828949, 128.5791395770442),
+        },
+        {
+            content: "<div>대쿠이 본점 </div>",
+            latlng: new kakao.maps.LatLng(35.85637944710946, 128.58849757154763),
+        },
+        {
+            content: "<div>리안</div>",
+            latlng: new kakao.maps.LatLng(35.85531294402579, 128.65034736159353),
+        },
+        {
+            content: "<div>삼송빵집 본점</div>",
+            latlng: new kakao.maps.LatLng(35.868590812505495, 128.59348979951432),
+        },
+        {
+            content: "<div>앞산주택</div>",
+            latlng: new kakao.maps.LatLng(35.83365578756154, 128.57767343806148),
+        },
+        {
+            content: "<div>헤이마</div>",
+            latlng: new kakao.maps.LatLng(35.981722656574824, 128.6351607831935),
+        },
+        {
+            content: "<div>걸리버막창 </div>",
+            latlng: new kakao.maps.LatLng(35.885506679240066, 128.58154052994416),
+        },
+        //광주맛집
+        {
+            content: "<div>상무초밥 상무점</div>",
+            latlng: new kakao.maps.LatLng(35.154963711193005, 126.85440773596108),
+        },
+         {
+            content: "<div>궁전제과 충장본점</div>",
+            latlng: new kakao.maps.LatLng(35.147757154830245, 126.91761728672508),
+        },
+         {
+            content: "<div>초돈</div>",
+            latlng: new kakao.maps.LatLng(35.1911466699724, 126.8304838207219),
+        },
+         {
+            content: "<div>송정떡갈비 1호점</div>",
+            latlng: new kakao.maps.LatLng(35.138970637650836, 126.79486517716452),
+        },
+         {
+            content: "<div>나주식당</div>",
+            latlng: new kakao.maps.LatLng(35.15432486469979, 126.91801085387208),
+        },
+         {
+            content: "<div>스트럭트</div>",
+            latlng: new kakao.maps.LatLng(35.14991673290416, 126.92481189759543),
+        },
+         {
+            content: "<div>카페304 충장점</div>",
+            latlng: new kakao.maps.LatLng(35.124798461377054, 126.90922878890916),
+        },
+        //울산 맛집
+         {
+            content: "<div>언양기와집불고기 </div>",
+            latlng: new kakao.maps.LatLng(35.56532668133025, 129.1224605296966),
+        },
+        {
+            content: "<div>농도</div>",
+            latlng: new kakao.maps.LatLng(35.55857448750601, 129.08349282373396),
+        },
+        {
+            content: "<div>함양집</div>",
+            latlng: new kakao.maps.LatLng(35.56860325557732, 129.32869231922922),
+        },
+        {
+            content: "<div>헤이다이닝</div>",
+            latlng: new kakao.maps.LatLng(35.54281679351544, 129.3389467626508),
+        },
+        {
+            content: "<div>카페리베리베</div>",
+            latlng: new kakao.maps.LatLng(35.35868095298546, 129.35640810393096),
+        },
+        {
+            content: "<div>이중생업</div>",
+            latlng: new kakao.maps.LatLng(35.538656231420745, 129.33636780638804),
+        },
+        //인천맛집
+        {
+            content: "<div>온센 본점</div>",
+            latlng: new kakao.maps.LatLng(37.47265131147812, 126.62475475260705),
+        },
+        {
+            content: "<div>신승반점 본점</div>",
+            latlng: new kakao.maps.LatLng(37.47547269346376, 126.61785233810375),
+        },
+        {
+            content: "<div>바베큐광장 화로구이 </div>",
+            latlng: new kakao.maps.LatLng(37.491287363751724, 126.72887964017917),
+        },
+        {
+            content: "<div>로니로티 부평점</div>",
+            latlng: new kakao.maps.LatLng(37.492924980271404, 126.7247113310231),
+        },
+        {
+            content: "<div>스타파이브</div>",
+            latlng: new kakao.maps.LatLng(37.43927855691396, 126.43085669493034),
+        },
+        {
+            content: "<div>경인면옥</div>",
+            latlng: new kakao.maps.LatLng(37.51453473014412, 126.64927676258034),
+        },
+        //제주맛집
+        {
+            content: "<div>연돈</div>",
+            latlng: new kakao.maps.LatLng(33.2588794598111, 126.40724334591556),
+        },
+        {
+            content: "<div>제주김만복 본점</div>",
+            latlng: new kakao.maps.LatLng(33.49692277226924, 126.50871809874401),
+        },
+        {
+            content: "<div>우진해장국</div>",
+            latlng: new kakao.maps.LatLng(33.51151639111576, 126.52003692513769),
+        },
+        {
+            content: "<div>자매국수 본점</div>",
+            latlng: new kakao.maps.LatLng(33.516824664191134, 126.51707330719294),
+        },
+        {
+            content: "<div>칠돈가 본점</div>",
+            latlng: new kakao.maps.LatLng(33.50240105680744, 126.51076285478193),
+        },
+        {
+            content: "<div>미영이네식당 </div>",
+            latlng: new kakao.maps.LatLng(33.21769869385963, 126.24989758780404),
+        },
+        {
+            content: "<div>용초밥</div>",
+            latlng: new kakao.maps.LatLng(33.51008457746911, 126.53104430929686),
+        },
+
+    ];
+
+    for (var i = 0; i < positions.length; i++) {
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            map: map, // 마커를 표시할 지도
+            position: positions[i].latlng, // 마커의 위치
+        });
+
+        // 마커에 표시할 인포윈도우를 생성합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: positions[i].content, // 인포윈도우에 표시할 내용
+        });
+
+        // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+        // 이벤트 리스너로는 클로저를 만들어 등록합니다
+        // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+        kakao.maps.event.addListener(
+            marker,
+            "mouseover",
+            makeOverListener(map, marker, infowindow)
+        );
+        kakao.maps.event.addListener(
+            marker,
+            "mouseout",
+            makeOutListener(infowindow)
+        );
+    }
+
+    // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+    function makeOverListener(map, marker, infowindow) {
+        return function () {
+            infowindow.open(map, marker);
+        };
+    }
+
+    // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+    function makeOutListener(infowindow) {
+        return function () {
+            infowindow.close();
+        };
+    }
+
+</script>
+
+
+
+
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
