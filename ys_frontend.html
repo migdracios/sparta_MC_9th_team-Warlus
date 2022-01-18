@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>스파르타 메이킹챌린지 ㅣ 팀 바다코끼리</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&family=Mochiy+Pop+P+One&family=Pacifico&display=swap"
+          rel="stylesheet">
+
+
+    <style>
+
+        * {
+            font-family: 'Gowun Batang', serif;
+        }
+        body {
+            background: #ffe5cb;
+            color: #333a45;
+        }
+
+    </style>
+
+
+
+</head>
+<body>
+
+<div><!-- 상단부 헤더 이미지 태그-->
+    <img class="img_head" style="width: 100%; height: 1150px;" src=""/>
+</div>
+
+<div class="info_how2"><!-- 중단부 인포 텍스트 태그 입니다-->
+    How to MATVIEW
+</div>
+
+<div class="dv_par"><!-- 중단부 info 부모 div 태그-->
+
+    <div class="div_loca"><!-- 중단부 info 지역 div 태그-->
+
+        <div class="info_sel"><!-- 중단부 info 지역 text 태그-->
+            지역 골라보기
+        </div>
+
+        <div><!-- 중단부 info 지역 image 태그-->
+            <img class="info_img" src="..."/>
+        </div>
+
+        <!-- 중단부 info 지역 dropdown 태그-->
+    </div>
+
+    <div><!--중단부 matView Run 태그-->
+        <h3 class = run_matview>Run MatView</h3>
+    </div>
+
+    <!-- 중단부 드롭다운 옵션 얼럿 태그 입니다-->
+    <div class="alert alert-warning alert-dismissible fade show" style="font-family: 'Gowun Batang', serif" role="alert">
+        <strong>Holy guacamole!</strong> 지금 dropdown option 을 선택 중입니다
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <!-- 지도를 표시할 div 입니다 -->
+    <div id="map" class="kmap" style="width:100%;height:500px;"></div>
+
+
+
+
+
+    <!-- 밑의 내용은 app.py의 데이터 연결내용입니다 -->
+    <script>
+        $(document).ready(function () {
+            call_review();
+        });
+
+
+        function make_review() {
+            let name = $('#name').val();
+            let review = $('#review').val();
+            let star = $('#star').val();
+
+            $.ajax({
+                    type: "POST",
+                    url: "/review",
+                    data: {name_give: name, review_give: review, star_give: star},
+                    success: function (response) {
+                        alert(response["msg"]);
+                        window.location.reload();
+                    }
+                }
+            )
+        }
+    </script>
+
+    <!-- 지도 표시할 script입니다 -->
+    <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=880565b3d094debea715c9c1ebbd1bbe&libraries=clusterer"></script>
+    <script>
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+            mapOption = {
+                center: new kakao.maps.LatLng(35.767656775135855, 128.1321971735885), // 지도의 중심좌표
+                level: 13, // 지도의 확대 레벨
+                mapTypeId: kakao.maps.MapTypeId.ROADMAP // 지도종류
+            };
+
+        // 지도를 생성한다
+        var map = new kakao.maps.Map(mapContainer, mapOption);
+
+        // 마커 클러스터러를 생성합니다
+        var clusterer = new kakao.maps.MarkerClusterer({
+            map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+            averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+            minLevel: 10 // 클러스터 할 최소 지도 레벨
+        });
+
+        var 데이터 = [
+            [37.55321, 126.972613, '<div style="padding: 5px">내용1</div>'],
+            [37.558907, 126.978305, '<div style="padding: 5px">내용2</div>'],
+            [37.544647, 127.971986, '<div style="padding: 5px">내용3</div>']
+        ];
+        var markers = [];
+        for (var i = 0; i < 데이터.length; i++) {
+            // 지도에 마커를 생성하고 표시한다
+            var marker = new kakao.maps.Marker({
+                position: new kakao.maps.LatLng(데이터[i][0], 데이터[i][1]), // 마커의 좌표
+                map: map // 마커를 표시할 지도 객체
+            });
+            // 인포윈도우를 생성합니다
+            var infowindow = new kakao.maps.InfoWindow({
+                content: 데이터[i][2]
+            });
+
+            markers.push(marker);
+            kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+            kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+        }
+
+        // 클러스터러에 마커들을 추가합니다
+        clusterer.addMarkers(markers);
+
+        // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+        function makeOverListener(map, marker, infowindow) {
+            return function () {
+                infowindow.open(map, marker);
+            };
+        }
+
+        // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+        function makeOutListener(infowindow) {
+            return function () {
+                infowindow.close();
+            };
+        }
+
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
