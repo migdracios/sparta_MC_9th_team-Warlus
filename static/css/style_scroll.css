@@ -6,7 +6,7 @@
             position: absolute;
             margin: auto;
             left: 50%;
-            top: 900px;
+            top: 800px;
             -webkit-transform: translateX(-50%);
             z-index: 9999;
         }
