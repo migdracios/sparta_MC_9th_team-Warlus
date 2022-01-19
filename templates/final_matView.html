@@ -287,12 +287,9 @@
             </button>
             <div class="dropdown-menu info_dd" aria-labelledby="dropdownMenuButton">
                 <!-- Dropdown menu links -->
-                <a class="dropdown-item" id="btn2" onclick="seoul()">일식</a>
-                <a class="dropdown-item" id="btn2" onclick="daejeon()">양식</a>
-                <a class="dropdown-item" id="btn2" onclick="busan()">중식</a>
-                <a class="dropdown-item" id="btn2" onclick="daegu()">...</a>
-                <a class="dropdown-item" id="btn2" onclick="gwangju()">...</a>
-                <a class="dropdown-item" id="btn2" onclick="ulsan()">...</a>
+                <a class="dropdown-item" id="btn2" onclick="japanese()">일식</a>
+                <a class="dropdown-item" id="btn2" onclick="french()">양식</a>
+                <a class="dropdown-item" id="btn2" onclick="china()">중식</a>
             </div>
         </div>
     </div>
@@ -315,14 +312,7 @@
             </button>
             <div class="dropdown-menu info_dd" aria-labelledby="dropdownMenuButton">
                 <!-- Dropdown menu links -->
-                <a class="dropdown-item" id="btn2" onclick="seoul()">개발자 J의 추천</a>
-                <a class="dropdown-item" id="btn2" onclick="daejeon()">대전광역시</a>
-                <a class="dropdown-item" id="btn2" onclick="busan()">부산광역시</a>
-                <a class="dropdown-item" id="btn2" onclick="daegu()">대구광역시</a>
-                <a class="dropdown-item" id="btn2" onclick="gwangju()">광주광역시</a>
-                <a class="dropdown-item" id="btn2" onclick="ulsan()">울산광역시</a>
-                <a class="dropdown-item" id="btn2" onclick="incheon()">인천광역시</a>
-                <a class="dropdown-item" id="btn2" onclick="jeju()">제주특별자치도</a>
+                <a class="dropdown-item" id="btn2" onclick="seoul()">개발자의 추천</a>
             </div>
         </div>
     </div>
@@ -409,7 +399,23 @@
         map.setCenter(moveLatLon);
     }
 </script>
-
+<script>
+    function japanese() {
+        var moveLatLon = new kakao.maps.LatLng(36.44253942338233, 127.9623622603848);
+        map.setLevel(13)
+        map.setCenter(moveLatLon);
+    }
+    function china()  {
+        var moveLatLon = new kakao.maps.LatLng(36.44253942338233, 127.9623622603848);
+        map.setLevel(13)
+        map.setCenter(moveLatLon);
+    }
+    function french() {
+        var moveLatLon = new kakao.maps.LatLng(36.44253942338233, 127.9623622603848);
+        map.setLevel(13)
+        map.setCenter(moveLatLon);
+    }
+</script>
 
 <!-- 스크롤 펑션 스크립트 입니다-->
 <script>
