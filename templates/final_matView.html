@@ -47,7 +47,7 @@
             src="http://code.jquery.com/jquery-latest.js">
     </script>
 
-            <!-- Google Fonts tag-->
+    <!-- Google Fonts tag-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Black+Han+Sans&family=Gowun+Batang:wght@400;700&family=Mochiy+Pop+P+One&family=Pacifico&display=swap"
@@ -125,7 +125,7 @@
         }
 
         .info_how2 {
-             background-color: white;
+            background-color: white;
             border-radius: 15px;
             width: 600px;
             display: block;
@@ -287,12 +287,9 @@
             </button>
             <div class="dropdown-menu info_dd" aria-labelledby="dropdownMenuButton">
                 <!-- Dropdown menu links -->
-                <a class="dropdown-item" id="btn2" onclick="seoul()">일식</a>
-                <a class="dropdown-item" id="btn2" onclick="daejeon()">양식</a>
-                <a class="dropdown-item" id="btn2" onclick="busan()">중식</a>
-                <a class="dropdown-item" id="btn2" onclick="daegu()">...</a>
-                <a class="dropdown-item" id="btn2" onclick="gwangju()">...</a>
-                <a class="dropdown-item" id="btn2" onclick="ulsan()">...</a>
+                <a class="dropdown-item" id="btn2" onclick="japanese()">일식</a>
+                <a class="dropdown-item" id="btn2" onclick="french()">양식</a>
+                <a class="dropdown-item" id="btn2" onclick="china()">중식</a>
             </div>
         </div>
     </div>
@@ -315,14 +312,7 @@
             </button>
             <div class="dropdown-menu info_dd" aria-labelledby="dropdownMenuButton">
                 <!-- Dropdown menu links -->
-                <a class="dropdown-item" id="btn2" onclick="seoul()">개발자 J의 추천</a>
-                <a class="dropdown-item" id="btn2" onclick="daejeon()">대전광역시</a>
-                <a class="dropdown-item" id="btn2" onclick="busan()">부산광역시</a>
-                <a class="dropdown-item" id="btn2" onclick="daegu()">대구광역시</a>
-                <a class="dropdown-item" id="btn2" onclick="gwangju()">광주광역시</a>
-                <a class="dropdown-item" id="btn2" onclick="ulsan()">울산광역시</a>
-                <a class="dropdown-item" id="btn2" onclick="incheon()">인천광역시</a>
-                <a class="dropdown-item" id="btn2" onclick="jeju()">제주특별자치도</a>
+                <a class="dropdown-item" id="btn2" onclick="seoul()">개발자의 추천</a>
             </div>
         </div>
     </div>
@@ -337,19 +327,6 @@
 
 <!-- 하단부 div-->
 <div class="div_bottom">
-    <!--하단부부 matView Run 태그->
-    <div>
-        <h3 class = run_matview>Run MatView</h3>
-    </div>
-
-    <!- 하단부 드롭다운 옵션 얼럿 태그-->
-    <div class="alert alert-warning alert-dismissible fade show" style="font-family: 'Gowun Batang', serif"
-         role="alert">
-        <strong>지금 당신은!</strong> [ dropdown option ] 을 선택 중입니다. :^)
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
 
 
     <!-- 여기서부터 지도와 스크롤의 스크립트입니다 -->
@@ -365,6 +342,7 @@
         var moveLatLon = new kakao.maps.LatLng(37.54952047275068, 126.9877909044856);
         map.setLevel(8)
         map.setCenter(moveLatLon);
+
     }
 
     function daejeon() {
@@ -409,7 +387,88 @@
         map.setCenter(moveLatLon);
     }
 </script>
+<script>
+    function japanese() {
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+            mapOption = {
+                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };
 
+            // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+        var map = new kakao.maps.Map(mapContainer, mapOption);
+
+        var moveLatLon = new kakao.maps.LatLng(36.44253942338233, 127.9623622603848);
+        map.setLevel(13)
+        map.setCenter(moveLatLon);
+
+        // 마커 클러스터러를 생성합니다
+        var clusterer = new kakao.maps.MarkerClusterer({
+            map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+            averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+            minLevel: 10 // 클러스터 할 최소 지도 레벨
+        });
+
+        var 일식 = [
+            [37.57402057288615, 126.98967147181573, '<div class="mark_info">온천집 익선</div>'],
+            [35.203429960431244, 129.08385729969294, '<div class="mark_info">오꼬식당</div>'],
+            [35.14842417840112, 129.11385727152978, '<div class="mark_info">동경밥상</div>'],
+            [35.154963711193005, 126.85440773596108, '<div class="mark_info">상무초밥 상무점</div>'],
+            [37.47265131147812, 126.62475475260705, '<div class="mark_info">온센 본점</div>'],
+            [33.51008457746911, 126.53104430929686, '<div class="mark_info">용초밥</div>'],
+            [35.15210525191797, 126.85855919809701, '<div class="mark_info">하지메</div>'],
+            [35.15143377010925, 126.85274458460412, '<div class="mark_info">고다미</div>'],
+        ]
+
+        var markers = [];
+
+        for (var i = 0; i < 일식.length; i++) {
+            // 지도에 마커를 생성하고 표시한다
+            var marker = new kakao.maps.Marker({
+                position: new kakao.maps.LatLng(일식[i][0], 일식[i][1]), // 마커의 좌표
+                map: map // 마커를 표시할 지도 객체
+            });
+            // 인포윈도우를 생성합니다
+            var infowindow = new kakao.maps.InfoWindow({
+                content: 일식[i][2]
+            });
+
+            markers.push(marker);
+            kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+            kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+        }
+        // 클러스터러에 마커들을 추가합니다
+        clusterer.addMarkers(markers);
+
+
+        // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+        function makeOverListener(map, marker, infowindow) {
+            return function () {
+                infowindow.open(map, marker);
+            };
+        }
+
+        // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+        function makeOutListener(infowindow) {
+            return function () {
+                infowindow.close();
+            };
+        }
+
+    }
+
+    function china() {
+        var moveLatLon = new kakao.maps.LatLng(36.44253942338233, 127.9623622603848);
+        map.setLevel(13)
+        map.setCenter(moveLatLon);
+    }
+
+    function french() {
+        var moveLatLon = new kakao.maps.LatLng(36.44253942338233, 127.9623622603848);
+        map.setLevel(13)
+        map.setCenter(moveLatLon);
+    }
+</script>
 
 <!-- 스크롤 펑션 스크립트 입니다-->
 <script>
@@ -456,11 +515,11 @@
     var map = new kakao.maps.Map(mapContainer, mapOption);
 
     // 마커 클러스터러를 생성합니다
-    var clusterer = new kakao.maps.MarkerClusterer({
-        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
-        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
-        minLevel: 10 // 클러스터 할 최소 지도 레벨
-    });
+    {#var clusterer = new kakao.maps.MarkerClusterer({#}
+    {#    map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체#}
+    {#    averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정#}
+    {#    minLevel: 10 // 클러스터 할 최소 지도 레벨#}
+    //});
 
     // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다
     var 데이터 = [
@@ -531,7 +590,9 @@
 
     ]
 
+
     var markers = [];
+
     for (var i = 0; i < 데이터.length; i++) {
         // 지도에 마커를 생성하고 표시한다
         var marker = new kakao.maps.Marker({
@@ -549,7 +610,7 @@
     }
 
     // 클러스터러에 마커들을 추가합니다
-    clusterer.addMarkers(markers);
+    {#clusterer.addMarkers(markers);#}
 
 
     // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
