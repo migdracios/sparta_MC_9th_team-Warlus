@@ -57,7 +57,7 @@
     <link href="../static/css/style_scroll.css" rel="stylesheet">
 
     <!-- 웹 페이지 제목 태그-->
-    <title>스파르타 메이킹챌린지 ㅣ 팀 바다코끼리</title>
+    <title>맛뷰 MatView</title>
 
 
     <style>
@@ -72,12 +72,18 @@
             color: #333a45;
         }
 
+        .mark_info{
+            padding: 10px;
+            font-style: inherit;
+        }
+
         .kmap {
             margin: auto;
             display: flex;
             flex-direction: row;
             justify-content: center;
         }
+
 
         /*상단부 div*/
         .div_head {
@@ -189,7 +195,7 @@
             border-radius: 15px;
             width: 170px;
             display: block;
-            margin: 100px auto 100px auto;
+            margin: 10px auto 250px auto;
             font-family: 'Pacifico', cursive;
             font-size: 50px;
             text-align: center;
@@ -204,6 +210,7 @@
         .div_bottom {
 
         }
+
 
 
     </style>
@@ -287,9 +294,11 @@
             </button>
             <div class="dropdown-menu info_dd" aria-labelledby="dropdownMenuButton">
                 <!-- Dropdown menu links -->
+                <a class="dropdown-item" id="btn2" onclick="korea()">한식</a>
                 <a class="dropdown-item" id="btn2" onclick="japanese()">일식</a>
                 <a class="dropdown-item" id="btn2" onclick="french()">양식</a>
                 <a class="dropdown-item" id="btn2" onclick="china()">중식</a>
+                <a class="dropdown-item" id="btn2" onclick="cafe()">카페&베이커리</a>
             </div>
         </div>
     </div>
@@ -312,7 +321,7 @@
             </button>
             <div class="dropdown-menu info_dd" aria-labelledby="dropdownMenuButton">
                 <!-- Dropdown menu links -->
-                <a class="dropdown-item" id="btn2" onclick="seoul()">개발자의 추천</a>
+                <a class="dropdown-item" id="btn2" onclick="developer_choice()">개발자의 추천</a>
             </div>
         </div>
     </div>
@@ -328,12 +337,8 @@
 <!-- 하단부 div-->
 <div class="div_bottom">
 
-
-    <!-- 여기서부터 지도와 스크롤의 스크립트입니다 -->
-
-
     <!-- 지도를 표시할 div 입니다 -->
-    <div id="map" class="kmap" style="width:100%;height:500px;"></div>
+    <div id="map" class="kmap" style="width:100%;height:600px;"></div>
 </div>
 
 <!-- 도시를 클릭하면 도시를 보여줍니다 -->
@@ -357,6 +362,10 @@
             [37.525406603963155, 127.03670987205962, '<div class="mark_info">호족반 청담</div>'],
             [37.57402057288615, 126.98967147181573, '<div class="mark_info">온천집 익선</div>'],
             [37.56834566038699, 126.9304775827864, '<div class="mark_info">목란</div>'],
+            [37.54161116509498, 126.98709149591927, '<div class="mark_info">카사블랑카</div>'],
+            [37.53366247051793, 126.98969842045847, '<div class="mark_info">라자트</div>'],
+            [37.54002806962471, 126.94848757424786, '<div class="mark_info">산동만두</div>'],
+            [37.56857054420215, 126.98609251603142, '<div class="mark_info">우육면관 청계천점</div>'],
         ]
 
         var markers = [];
@@ -791,6 +800,97 @@
 </script>
 
 <script>
+    function korea() {
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+            mapOption = {
+                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };
+
+        // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+        var map = new kakao.maps.Map(mapContainer, mapOption);
+
+        var moveLatLon = new kakao.maps.LatLng(36.44253942338233, 127.9623622603848);
+        map.setLevel(13)
+        map.setCenter(moveLatLon);
+
+        // 마커 클러스터러를 생성합니다
+        var clusterer = new kakao.maps.MarkerClusterer({
+            map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+            averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+            minLevel: 10 // 클러스터 할 최소 지도 레벨
+        });
+
+        var 한식 = [
+            [37.56255207348654, 126.98559827156627, '<div class="mark_info">명동교자 본점</div>'],
+            [37.53598448259359, 126.97222047156214, '<div class="mark_info">몽탄</div>'],
+            [36.35840744048402, 127.35169517129687, '<div class="mark_info">임진강장어</div>'],
+            [36.789307936278504, 127.12754087155112, '<div class="mark_info">당산오돌</div>'],
+            [36.32681173513397, 127.39545214291932, '<div class="mark_info">태평소국밥 본점</div>'],
+            [36.359227133688, 127.42662606515651, '<div class="mark_info">오문창순대국밥</div>'],
+            [35.153162778549465, 129.12478444858584, '<div class="mark_info">좋은한우</div>'],
+            [35.19705833668, 129.09971547227406, '<div class="mark_info">고메밀면 동래본점</div>'],
+            [35.163215865466945, 129.16638306351865, '<div class="mark_info">해운대암소갈비집</div>'],
+            [35.16887267158675, 129.16636200039707, '<div class="mark_info">해운대가야밀면</div>'],
+            [35.15678020362044, 129.1342897290217, '<div class="mark_info">수변최고돼지국밥</div>'],
+            [35.83855813828949, 128.5791395770442, '<div class="mark_info">조조칼국수 앞산본점</div>'],
+            [35.885506679240066, 128.58154052994416, '<div class="mark_info">걸리버막창</div>'],
+            [35.1911466699724, 126.8304838207219, '<div class="mark_info">초돈</div>'],
+            [35.138970637650836, 126.79486517716452, '<div class="mark_info">송정떡갈비 1호점</div>'],
+            [35.15432486469979, 126.91801085387208, '<div class="mark_info">나주식당</div>'],
+            [35.56532668133025, 129.1224605296966, '<div class="mark_info">언양기와집불고기</div>'],
+            [35.56860325557732, 129.32869231922922, '<div class="mark_info">함양집</div>'],
+            [37.491287363751724, 126.72887964017917, '<div class="mark_info">제주김만복 본점</div>'],
+            [33.51151639111576, 126.52003692513769, '<div class="mark_info">우진해장국</div>'],
+            [33.516824664191134, 126.51707330719294, '<div class="mark_info">자매국수 본점</div>'],
+            [33.50240105680744, 126.51076285478193, '<div class="mark_info">칠돈가 본점</div>'],
+            [33.21769869385963, 126.24989758780404, '<div class="mark_info">미영이네식당</div>'],
+            [34.73992860841515, 127.73481075576096, '<div class="mark_info">일오삼식당</div>'],
+            [35.266818096021076, 126.9608438692635, '<div class="mark_info">삼거리농원</div>'],
+            [35.16326148182136, 126.80730550208517, '<div class="mark_info">어등해장국</div>'],
+            [34.732906174691806, 127.72067085582165, '<div class="mark_info">갯마을장어</div>'],
+            [35.188033861606314, 126.8350227051287, '<div class="mark_info">대성콩물</div>'],
+            [35.49849936361655, 128.74556200847346, '<div class="mark_info">밀양돼지국밥</div>'],
+            [37.53846458501283, 126.7372027722611, '<div class="mark_info">계양 명가 부대찌개</div>'],
+        ]
+
+        var markers = [];
+
+        for (var i = 0; i < 한식.length; i++) {
+            // 지도에 마커를 생성하고 표시한다
+            var marker = new kakao.maps.Marker({
+                position: new kakao.maps.LatLng(한식[i][0], 한식[i][1]), // 마커의 좌표
+                map: map // 마커를 표시할 지도 객체
+            });
+            // 인포윈도우를 생성합니다
+            var infowindow = new kakao.maps.InfoWindow({
+                content: 한식[i][2]
+            });
+
+            markers.push(marker);
+            kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+            kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+        }
+        // 클러스터러에 마커들을 추가합니다
+        clusterer.addMarkers(markers);
+
+
+        // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+        function makeOverListener(map, marker, infowindow) {
+            return function () {
+                infowindow.open(map, marker);
+            };
+        }
+
+        // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+        function makeOutListener(infowindow) {
+            return function () {
+                infowindow.close();
+            };
+        }
+
+    }
+
     function japanese() {
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div
             mapOption = {
@@ -864,11 +964,6 @@
     }
 
     function china() {
-        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-            mapOption = {
-                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-                level: 13 // 지도의 확대 레벨
-            };
 
         // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
         var map = new kakao.maps.Map(mapContainer, mapOption);
@@ -890,6 +985,7 @@
             [37.47547269346376, 126.61785233810375, '<div class="mark_info">신승반점 본점</div>'],
             [34.74101482016983, 127.73592802692538, '<div class="mark_info">산해반점</div>'],
             [35.18611016540168, 126.83219073177882, '<div class="mark_info">신락원</div>'],
+            [37.54002806962471, 126.94848757424786, '<div class="mark_info">산동만두</div>'],
 
         ]
 
@@ -966,6 +1062,9 @@
             [37.6662537698999, 126.78388110279975, '<div class="mark_info">마샬앤릴리</div>'],
             [37.28414168114601, 126.82798500882515, '<div class="mark_info">포크너 그랑시티자이점</div>'],
             [37.557853872642454, 126.83877843264321, '<div class="mark_info">밀동</div>'],
+            [37.54161116509498, 126.98709149591927, '<div class="mark_info">카사블랑카</div>'],
+            [37.53366247051793, 126.98969842045847, '<div class="mark_info">라자트</div>'],
+            [37.56857054420215, 126.98609251603142, '<div class="mark_info">우육면관 청계천점</div>'],
 
         ]
 
@@ -1005,6 +1104,73 @@
         }
 
     }
+     function cafe() {
+
+        // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+        var map = new kakao.maps.Map(mapContainer, mapOption);
+
+        var moveLatLon = new kakao.maps.LatLng(36.44253942338233, 127.9623622603848);
+        map.setLevel(13)
+        map.setCenter(moveLatLon);
+
+        // 마커 클러스터러를 생성합니다
+        var clusterer = new kakao.maps.MarkerClusterer({
+            map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+            averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+            minLevel: 10 // 클러스터 할 최소 지도 레벨
+        });
+
+        var 카페 = [
+            [36.32769009073234, 127.42729080041626, '<div class="mark_info">성심당 본점</div>'],
+            [36.36457500694532, 127.34128242883602, '<div class="mark_info">커피 인터뷰</div>'],
+            [35.868590812505495, 128.59348979951432, '<div class="mark_info">삼송빵집 본점</div>'],
+            [35.981722656574824, 128.6351607831935, '<div class="mark_info">헤이마</div>'],
+            [35.147757154830245, 126.91761728672508, '<div class="mark_info">궁전제과 충장본점</div>'],
+            [35.14991673290416, 126.92481189759543, '<div class="mark_info">스트럭트</div>'],
+            [35.124798461377054, 126.90922878890916, '<div class="mark_info">카페304 충장점</div>'],
+            [35.56860325557732, 129.32869231922922, '<div class="mark_info">농도</div>'],
+            [35.35868095298546, 129.35640810393096, '<div class="mark_info">카페리베리베</div>'],
+            [36.36457500694532, 127.34128242883602, '<div class="mark_info">로니로티 부평점</div>'],
+            [37.43927855691396, 126.43085669493034, '<div class="mark_info">스타파이브</div>'],
+
+        ]
+
+        var markers = [];
+
+        for (var i = 0; i < 카페.length; i++) {
+            // 지도에 마커를 생성하고 표시한다
+            var marker = new kakao.maps.Marker({
+                position: new kakao.maps.LatLng(카페[i][0], 카페[i][1]), // 마커의 좌표
+                map: map // 마커를 표시할 지도 객체
+            });
+            // 인포윈도우를 생성합니다
+            var infowindow = new kakao.maps.InfoWindow({
+                content: 카페[i][2]
+            });
+
+            markers.push(marker);
+            kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+            kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+        }
+        // 클러스터러에 마커들을 추가합니다
+        clusterer.addMarkers(markers);
+
+
+        // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+        function makeOverListener(map, marker, infowindow) {
+            return function () {
+                infowindow.open(map, marker);
+            };
+        }
+
+        // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+        function makeOutListener(infowindow) {
+            return function () {
+                infowindow.close();
+            };
+        }
+
+    }
 
 </script>
 
@@ -1012,7 +1178,7 @@
 <!--개발자추천-->
 
 <script>
-function china() {
+function developer_choice() {
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div
             mapOption = {
                 center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -1036,9 +1202,39 @@ function china() {
         var 개추 = [
             [37.56255207348654, 126.98559827156627, '<div class="mark_info">명동교자 본점</div>'],
             [37.53598448259359, 126.97222047156214, '<div class="mark_info">몽탄</div>'],
-            [37.47547269346376, 126.61785233810375, '<div class="mark_info">신승반점 본점</div>'],
+            [36.35840744048402, 127.35169517129687, '<div class="mark_info">임진강장어</div>'],
+            [36.359227133688, 127.42662606515651, '<div class="mark_info">오문창순대국밥</div>'],
+            [35.19705833668, 129.09971547227406, '<div class="mark_info">고메밀면 동래본점</div>'],
+            [35.14842417840112, 129.11385727152978, '<div class="mark_info">동경밥상</div>'],
+            [35.85637944710946, 128.58849757154763, '<div class="mark_info">대쿠이 본점</div>'],
+            [35.981722656574824, 128.6351607831935, '<div class="mark_info">헤이마</div>'],
+            [35.154963711193005, 126.85440773596108, '<div class="mark_info">상무초밥 상무점</div>'],
+            [35.147757154830245, 126.91761728672508, '<div class="mark_info">궁전제과 충장본점</div>'],
+            [35.138970637650836, 126.79486517716452, '<div class="mark_info">송정떡갈비 1호점</div>'],
+            [35.56532668133025, 129.1224605296966, '<div class="mark_info">언양기와집불고기</div>'],
+            [35.538656231420745, 129.33636780638804, '<div class="mark_info">이중생업</div>'],
+            [37.47265131147812, 126.62475475260705, '<div class="mark_info">온센 본점</div>'],
+            [33.2588794598111, 126.40724334591556, '<div class="mark_info">연돈</div>'],
+            [33.49692277226924, 126.50871809874401, '<div class="mark_info">제주김만복 본점</div>'],
+            [33.51151639111576, 126.52003692513769, '<div class="mark_info">우진해장국</div>'],
+            [33.50240105680744, 126.51076285478193, '<div class="mark_info">칠돈가 본점</div>'],
+            [33.21769869385963, 126.24989758780404, '<div class="mark_info">미영이네식당</div>'],
+            [34.73992860841515, 127.73481075576096, '<div class="mark_info">일오삼식당</div>'],
+            [35.266818096021076, 126.9608438692635, '<div class="mark_info">삼거리농원</div>'],
             [34.74101482016983, 127.73592802692538, '<div class="mark_info">산해반점</div>'],
+            [35.15210525191797, 126.85855919809701, '<div class="mark_info">하지메</div>'],
+            [35.16326148182136, 126.80730550208517, '<div class="mark_info">어등해장국</div>'],
+            [34.771551493030685, 127.7025761287729, '<div class="mark_info">쑝쑝돈까스</div>'],
+            [35.175386873794835, 126.80009007328933, '<div class="mark_info">난타5000 하남2지구점</div>'],
             [35.18611016540168, 126.83219073177882, '<div class="mark_info">신락원</div>'],
+            [34.732906174691806, 127.72067085582165, '<div class="mark_info">갯마을장어</div>'],
+            [35.188033861606314, 126.8350227051287, '<div class="mark_info">대성콩물</div>'],
+            [35.49849936361655, 128.74556200847346, '<div class="mark_info">밀양돼지국밥</div>'],
+            [35.15143377010925, 126.85274458460412, '<div class="mark_info">고다미</div>'],
+            [37.53273571570117, 126.73588440994213, '<div class="mark_info">계절향기</div>'],
+            [37.53846458501283, 126.7372027722611, '<div class="mark_info">계양 명가 부대찌개</div>'],
+            [37.28414168114601, 126.82798500882515, '<div class="mark_info">포크너 그랑시티자이점</div>'],
+            [37.483881216056304, 126.76181434953432, '<div class="mark_info">친근감을 느끼는마음정</div>'],
 
         ]
 
@@ -1132,73 +1328,73 @@ function china() {
     //});
 
     // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다
-    var 데이터 = [
-        //서울맛집
-        [37.57749233274407, 126.98604658739973, '<div class="mark_info">카페노티드 안국</div>'],
-        [37.56255207348654, 126.98559827156627, '<div class="mark_info">명동교자 본점</div>'],
-        [37.52462817792284, 127.04263461358946, '<div class="mark_info">스케줄 청담</div>'],
-        [37.53598448259359, 126.97222047156214, '<div class="mark_info">몽탄</div>'],
-        [37.53598448259359, 126.97222047156214, '<div class="mark_info">로우앤슬로우</div>'],
-        [37.525406603963155, 127.03670987205962, '<div class="mark_info">호족반 청담</div>'],
-        [37.57402057288615, 126.98967147181573, '<div class="mark_info">온천집 익선</div>'],
-        [37.56834566038699, 126.9304775827864, '<div class="mark_info">목란</div>'],
-        //대전맛집
-        [36.35840744048402, 127.35169517129687, '<div class="mark_info">임진강장어</div>'],
-        [36.789307936278504, 127.12754087155112, '<div class="mark_info">당산오돌</div>'],
-        [36.32769009073234, 127.42729080041626, '<div class="mark_info">성심당 본점</div>'],
-        [36.32681173513397, 127.39545214291932, '<div class="mark_info">태평소국밥 본점</div>'],
-        [36.36457500694532, 127.34128242883602, '<div class="mark_info">카페 인터뷰</div>'],
-        [36.33404610239948, 127.43782665764611, '<div class="mark_info">치앙마이방콕</div>'],
-        [36.359227133688, 127.42662606515651, '<div class="mark_info">오문창순대국밥</div>'],
-        [36.36699532478072, 127.38054973121982, '<div class="mark_info">베스타뷔페</div>'],
-        //부산맛집
-        [35.153162778549465, 129.12478444858584, '<div class="mark_info">좋은한우</div>'],
-        [35.203429960431244, 129.08385729969294, '<div class="mark_info">오꼬식당</div>'],
-        [35.19705833668, 129.09971547227406, '<div class="mark_info">고메밀면 동래본점</div>'],
-        [35.163215865466945, 129.16638306351865, '<div class="mark_info">해운대암소갈비집</div>'],
-        [35.16887267158675, 129.16636200039707, '<div class="mark_info">해운대가야밀면</div>'],
-        [35.15678020362044, 129.1342897290217, '<div class="mark_info">수변최고돼지국밥</div>'],
-        [35.14842417840112, 129.11385727152978, '<div class="mark_info">동경밥상</div>'],
-        [35.10209565674584, 129.03081932492717, '<div class="mark_info">이재모피자</div>'],
-        //대구맛집
-        [35.83855813828949, 128.5791395770442, '<div class="mark_info">조조칼국수 앞산본점</div>'],
-        [35.85637944710946, 128.58849757154763, '<div class="mark_info">대쿠이 본점</div>'],
-        [35.85531294402579, 128.65034736159353, '<div class="mark_info">리안</div>'],
-        [35.868590812505495, 128.59348979951432, '<div class="mark_info">삼송빵집 본점</div>'],
-        [35.83365578756154, 128.57767343806148, '<div class="mark_info">앞산주택</div>'],
-        [35.981722656574824, 128.6351607831935, '<div class="mark_info">헤이마</div>'],
-        [35.885506679240066, 128.58154052994416, '<div class="mark_info">걸리버막창</div>'],
-        //광주맛집
-        [35.154963711193005, 126.85440773596108, '<div class="mark_info">상무초밥 상무점</div>'],
-        [35.147757154830245, 126.91761728672508, '<div class="mark_info">궁전제과 충장본점</div>'],
-        [35.1911466699724, 126.8304838207219, '<div class="mark_info">초돈</div>'],
-        [35.138970637650836, 126.79486517716452, '<div class="mark_info">송정떡갈비 1호점</div>'],
-        [35.15432486469979, 126.91801085387208, '<div class="mark_info">나주식당</div>'],
-        [35.14991673290416, 126.92481189759543, '<div class="mark_info">스트럭트</div>'],
-        [35.124798461377054, 126.90922878890916, '<div class="mark_info">카페304 충장점</div>'],
-        //울산맛집
-        [35.56532668133025, 129.1224605296966, '<div class="mark_info">언양기와집불고기</div>'],
-        [35.56860325557732, 129.32869231922922, '<div class="mark_info">농도</div>'],
-        [35.56860325557732, 129.32869231922922, '<div class="mark_info">함양집</div>'],
-        [35.54281679351544, 129.3389467626508, '<div class="mark_info">헤이다이닝</div>'],
-        [35.35868095298546, 129.35640810393096, '<div class="mark_info">카페리베리베</div>'],
-        [35.538656231420745, 129.33636780638804, '<div class="mark_info">이중생업</div>'],
-        [37.47265131147812, 126.62475475260705, '<div class="mark_info">온센 본점</div>'],
-        [37.47547269346376, 126.61785233810375, '<div class="mark_info">신승반점 본점</div>'],
-        [37.491287363751724, 126.72887964017917, '<div class="mark_info">바베큐광장 화로구이</div>'],
-        [36.36457500694532, 127.34128242883602, '<div class="mark_info">로니로티 부평점</div>'],
-        [37.43927855691396, 126.43085669493034, '<div class="mark_info">스타파이브</div>'],
-        [37.51453473014412, 126.64927676258034, '<div class="mark_info">경인면옥</div>'],
-        //제주맛집
-        [33.2588794598111, 126.40724334591556, '<div class="mark_info">연돈</div>'],
-        [33.49692277226924, 126.50871809874401, '<div class="mark_info">제주김만복 본점</div>'],
-        [33.51151639111576, 126.52003692513769, '<div class="mark_info">우진해장국</div>'],
-        [33.516824664191134, 126.51707330719294, '<div class="mark_info">자매국수 본점</div>'],
-        [33.50240105680744, 126.51076285478193, '<div class="mark_info">칠돈가 본점</div>'],
-        [33.21769869385963, 126.24989758780404, '<div class="mark_info">미영이네식당</div>'],
-        [33.51008457746911, 126.53104430929686, '<div class="mark_info">용초밥</div>'],
-
-    ]
+    {#var 데이터 = [#}
+    {#    //서울맛집#}
+    {#    [37.57749233274407, 126.98604658739973, '<div class="mark_info">카페노티드 안국</div>'],#}
+    {#    [37.56255207348654, 126.98559827156627, '<div class="mark_info">명동교자 본점</div>'],#}
+    {#    [37.52462817792284, 127.04263461358946, '<div class="mark_info">스케줄 청담</div>'],#}
+    {#    [37.53598448259359, 126.97222047156214, '<div class="mark_info">몽탄</div>'],#}
+    {#    [37.53598448259359, 126.97222047156214, '<div class="mark_info">로우앤슬로우</div>'],#}
+    {#    [37.525406603963155, 127.03670987205962, '<div class="mark_info">호족반 청담</div>'],#}
+    {#    [37.57402057288615, 126.98967147181573, '<div class="mark_info">온천집 익선</div>'],#}
+    {#    [37.56834566038699, 126.9304775827864, '<div class="mark_info">목란</div>'],#}
+    {#    //대전맛집#}
+    {#    [36.35840744048402, 127.35169517129687, '<div class="mark_info">임진강장어</div>'],#}
+    {#    [36.789307936278504, 127.12754087155112, '<div class="mark_info">당산오돌</div>'],#}
+    {#    [36.32769009073234, 127.42729080041626, '<div class="mark_info">성심당 본점</div>'],#}
+    {#    [36.32681173513397, 127.39545214291932, '<div class="mark_info">태평소국밥 본점</div>'],#}
+    {#    [36.36457500694532, 127.34128242883602, '<div class="mark_info">카페 인터뷰</div>'],#}
+    {#    [36.33404610239948, 127.43782665764611, '<div class="mark_info">치앙마이방콕</div>'],#}
+    {#    [36.359227133688, 127.42662606515651, '<div class="mark_info">오문창순대국밥</div>'],#}
+    {#    [36.36699532478072, 127.38054973121982, '<div class="mark_info">베스타뷔페</div>'],#}
+    {#    //부산맛집#}
+    {#    [35.153162778549465, 129.12478444858584, '<div class="mark_info">좋은한우</div>'],#}
+    {#    [35.203429960431244, 129.08385729969294, '<div class="mark_info">오꼬식당</div>'],#}
+    {#    [35.19705833668, 129.09971547227406, '<div class="mark_info">고메밀면 동래본점</div>'],#}
+    {#    [35.163215865466945, 129.16638306351865, '<div class="mark_info">해운대암소갈비집</div>'],#}
+    {#    [35.16887267158675, 129.16636200039707, '<div class="mark_info">해운대가야밀면</div>'],#}
+    {#    [35.15678020362044, 129.1342897290217, '<div class="mark_info">수변최고돼지국밥</div>'],#}
+    {#    [35.14842417840112, 129.11385727152978, '<div class="mark_info">동경밥상</div>'],#}
+    {#    [35.10209565674584, 129.03081932492717, '<div class="mark_info">이재모피자</div>'],#}
+    {#    //대구맛집#}
+    {#    [35.83855813828949, 128.5791395770442, '<div class="mark_info">조조칼국수 앞산본점</div>'],#}
+    {#    [35.85637944710946, 128.58849757154763, '<div class="mark_info">대쿠이 본점</div>'],#}
+    {#    [35.85531294402579, 128.65034736159353, '<div class="mark_info">리안</div>'],#}
+    {#    [35.868590812505495, 128.59348979951432, '<div class="mark_info">삼송빵집 본점</div>'],#}
+    {#    [35.83365578756154, 128.57767343806148, '<div class="mark_info">앞산주택</div>'],#}
+    {#    [35.981722656574824, 128.6351607831935, '<div class="mark_info">헤이마</div>'],#}
+    {#    [35.885506679240066, 128.58154052994416, '<div class="mark_info">걸리버막창</div>'],#}
+    {#    //광주맛집#}
+    {#    [35.154963711193005, 126.85440773596108, '<div class="mark_info">상무초밥 상무점</div>'],#}
+    {#    [35.147757154830245, 126.91761728672508, '<div class="mark_info">궁전제과 충장본점</div>'],#}
+    {#    [35.1911466699724, 126.8304838207219, '<div class="mark_info">초돈</div>'],#}
+    {#    [35.138970637650836, 126.79486517716452, '<div class="mark_info">송정떡갈비 1호점</div>'],#}
+    {#    [35.15432486469979, 126.91801085387208, '<div class="mark_info">나주식당</div>'],#}
+    {#    [35.14991673290416, 126.92481189759543, '<div class="mark_info">스트럭트</div>'],#}
+    {#    [35.124798461377054, 126.90922878890916, '<div class="mark_info">카페304 충장점</div>'],#}
+    {#    //울산맛집#}
+    {#    [35.56532668133025, 129.1224605296966, '<div class="mark_info">언양기와집불고기</div>'],#}
+    {#    [35.56860325557732, 129.32869231922922, '<div class="mark_info">농도</div>'],#}
+    {#    [35.56860325557732, 129.32869231922922, '<div class="mark_info">함양집</div>'],#}
+    {#    [35.54281679351544, 129.3389467626508, '<div class="mark_info">헤이다이닝</div>'],#}
+    {#    [35.35868095298546, 129.35640810393096, '<div class="mark_info">카페리베리베</div>'],#}
+    {#    [35.538656231420745, 129.33636780638804, '<div class="mark_info">이중생업</div>'],#}
+    {#    [37.47265131147812, 126.62475475260705, '<div class="mark_info">온센 본점</div>'],#}
+    {#    [37.47547269346376, 126.61785233810375, '<div class="mark_info">신승반점 본점</div>'],#}
+    {#    [37.491287363751724, 126.72887964017917, '<div class="mark_info">바베큐광장 화로구이</div>'],#}
+    {#    [36.36457500694532, 127.34128242883602, '<div class="mark_info">로니로티 부평점</div>'],#}
+    {#    [37.43927855691396, 126.43085669493034, '<div class="mark_info">스타파이브</div>'],#}
+    {#    [37.51453473014412, 126.64927676258034, '<div class="mark_info">경인면옥</div>'],#}
+    {#    //제주맛집#}
+    {#    [33.2588794598111, 126.40724334591556, '<div class="mark_info">연돈</div>'],#}
+    {#    [33.49692277226924, 126.50871809874401, '<div class="mark_info">제주김만복 본점</div>'],#}
+    {#    [33.51151639111576, 126.52003692513769, '<div class="mark_info">우진해장국</div>'],#}
+    {#    [33.516824664191134, 126.51707330719294, '<div class="mark_info">자매국수 본점</div>'],#}
+    {#    [33.50240105680744, 126.51076285478193, '<div class="mark_info">칠돈가 본점</div>'],#}
+    {#    [33.21769869385963, 126.24989758780404, '<div class="mark_info">미영이네식당</div>'],#}
+    {#    [33.51008457746911, 126.53104430929686, '<div class="mark_info">용초밥</div>'],#}
+    {##}
+    {#]#}
 
 
     var markers = [];
